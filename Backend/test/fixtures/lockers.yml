@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  locker_controller: one
+  owner_email: MyString
+  key_sequence: MyString
+  abierto: false
+
+two:
+  nombre: MyString
+  locker_controller: two
+  owner_email: MyString
+  key_sequence: MyString
+  abierto: false

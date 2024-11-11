@@ -1,0 +1,2 @@
+class SymbolModel < ApplicationRecord
+end

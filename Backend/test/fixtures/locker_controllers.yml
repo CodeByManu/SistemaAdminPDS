@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  estado: MyString
+  ultima_conexion: 2024-11-08 12:43:38
+  casilleros_activos: 1
+  alert_sent: false
+  user: one
+
+two:
+  nombre: MyString
+  estado: MyString
+  ultima_conexion: 2024-11-08 12:43:38
+  casilleros_activos: 1
+  alert_sent: false
+  user: two

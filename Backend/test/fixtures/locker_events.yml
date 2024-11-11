@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locker: one
+  event_type: MyString
+  timestamp: 2024-11-08 12:44:30
+  ip_address: MyString
+
+two:
+  locker: two
+  event_type: MyString
+  timestamp: 2024-11-08 12:44:30
+  ip_address: MyString
