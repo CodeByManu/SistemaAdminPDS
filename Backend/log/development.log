@@ -152,3 +152,213 @@ Migrating to AddDeviseToUsers (20241108155837)
   [1m[36mActiveRecord::InternalMetadata Load (4.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
   [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (187.9ms)[0m  [1m[35mCREATE DATABASE "backend_development" ENCODING = 'unicode'[0m
+  [1m[35m (63.6ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  [1m[35m (16.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (2.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-12 15:32:01.627475', '2024-11-12 15:32:01.627478') RETURNING "key"[0m
+Migrating to CreateSymbolModels (20241108151908)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "symbol_models" ("id" bigserial primary key, "nombre" character varying NOT NULL, "activo" boolean DEFAULT TRUE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_symbol_models_on_nombre" ON "symbol_models" ("nombre")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108151908') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20241108152026)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "nombre" character varying NOT NULL, "rol" character varying DEFAULT 'administrador' NOT NULL, "symbol_model_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3f7634dfe8"
+FOREIGN KEY ("symbol_model_id")
+  REFERENCES "symbol_models" ("id")
+)[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE INDEX "index_users_on_symbol_model_id" ON "users" ("symbol_model_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_rol" ON "users" ("rol")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108152026') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGestures (20241108152258)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE TABLE "gestures" ("id" bigserial primary key, "symbol_model_id" bigint NOT NULL, "gesture_type" character varying NOT NULL, "position" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7281c1ea9c"
+FOREIGN KEY ("symbol_model_id")
+  REFERENCES "symbol_models" ("id")
+)[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE INDEX "index_gestures_on_symbol_model_id" ON "gestures" ("symbol_model_id")[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_gestures_on_model_and_gesture_and_position" ON "gestures" ("symbol_model_id", "gesture_type", "position")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108152258') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockerControllers (20241108154338)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "locker_controllers" ("id" bigserial primary key, "nombre" character varying NOT NULL, "estado" character varying DEFAULT 'conectado' NOT NULL, "ultima_conexion" timestamp(6), "casilleros_activos" integer DEFAULT 0 NOT NULL, "alert_sent" boolean DEFAULT FALSE NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5f776930b8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE INDEX "index_locker_controllers_on_user_id" ON "locker_controllers" ("user_id")[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_locker_controllers_on_nombre" ON "locker_controllers" ("nombre")[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE INDEX "index_locker_controllers_on_estado" ON "locker_controllers" ("estado")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154338') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockers (20241108154406)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "lockers" ("id" bigserial primary key, "nombre" character varying NOT NULL, "locker_controller_id" bigint NOT NULL, "owner_email" character varying NOT NULL, "key_sequence" character varying NOT NULL, "abierto" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_2a2db35431"
+FOREIGN KEY ("locker_controller_id")
+  REFERENCES "locker_controllers" ("id")
+)[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE INDEX "index_lockers_on_locker_controller_id" ON "lockers" ("locker_controller_id")[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_lockers_on_controller_and_nombre" ON "lockers" ("locker_controller_id", "nombre")[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE INDEX "index_lockers_on_owner_email" ON "lockers" ("owner_email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockerEvents (20241108154430)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE "locker_events" ("id" bigserial primary key, "locker_id" bigint NOT NULL, "event_type" character varying NOT NULL, "timestamp" timestamp(6) NOT NULL, "ip_address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_10be6a8312"
+FOREIGN KEY ("locker_id")
+  REFERENCES "lockers" ("id")
+)[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE INDEX "index_locker_events_on_locker_id" ON "locker_events" ("locker_id")[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE INDEX "index_locker_events_on_locker_and_event_and_timestamp" ON "locker_events" ("locker_id", "event_type", "timestamp")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154430') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDeviseToUsers (20241108155837)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp(6)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "provider" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" character varying[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_provider_and_uid" ON "users" ("provider", "uid")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddDeviseToUsers (20241108155837)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp(6)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "provider" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" character varying[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_provider_and_uid" ON "users" ("provider", "uid")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108155837') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2024-11-12 12:45:35 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-3.2.2/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.2.2/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 5.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/icon.png" for ::1 at 2024-11-12 12:45:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started GET "/" for ::1 at 2024-11-12 12:49:48 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-3.2.2/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.2.2/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.4ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/lockers" for ::1 at 2024-11-12 12:49:55 -0300
+Processing by LockersController#index as HTML
+  [1m[36mLocker Load (13.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers"[0m
+  ↳ app/controllers/lockers_controller.rb:4:in `index'
+Completed 200 OK in 22ms (Views: -1.7ms | ActiveRecord: 17.9ms (1 query, 0 cached) | GC: 1.4ms)
+
+
+Started GET "/locker" for ::1 at 2024-11-12 12:49:56 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker"):
+  
+Started GET "/favicon.ico" for ::1 at 2024-11-12 12:49:57 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/lockers" for ::1 at 2024-11-12 12:49:59 -0300
+Processing by LockersController#index as HTML
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers"[0m
+  ↳ app/controllers/lockers_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-11-12 12:52:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 12:52:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 12:52:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 12:52:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mSymbolModel Load (1.4ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" ORDER BY "symbol_models"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Create (2.6ms)[0m  [1m[32mINSERT INTO "symbol_models" ("nombre", "activo", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nombre", "Modelo Temporal"], ["activo", true], ["created_at", "2024-11-12 16:03:13.140963"], ["updated_at", "2024-11-12 16:03:13.140963"]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "nombre", "rol", "symbol_model_id", "created_at", "updated_at", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "provider", "uid") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["email", "[FILTERED]"], ["nombre", "Administrador"], ["rol", "administrador"], ["symbol_model_id", 1], ["created_at", "2024-11-12 16:03:13.373762"], ["updated_at", "2024-11-12 16:03:13.373762"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["provider", nil], ["uid", nil]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Create (1.8ms)[0m  [1m[32mINSERT INTO "locker_controllers" ("nombre", "estado", "ultima_conexion", "casilleros_activos", "alert_sent", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["nombre", "Controlador 1"], ["estado", "conectado"], ["ultima_conexion", "2024-11-12 16:03:13.380885"], ["casilleros_activos", 5], ["alert_sent", false], ["user_id", 1], ["created_at", "2024-11-12 16:03:13.391350"], ["updated_at", "2024-11-12 16:03:13.391350"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Create (0.5ms)[0m  [1m[32mINSERT INTO "locker_controllers" ("nombre", "estado", "ultima_conexion", "casilleros_activos", "alert_sent", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["nombre", "Controlador 2"], ["estado", "conectado"], ["ultima_conexion", "2024-11-12 16:03:13.397743"], ["casilleros_activos", 3], ["alert_sent", false], ["user_id", 1], ["created_at", "2024-11-12 16:03:13.400006"], ["updated_at", "2024-11-12 16:03:13.400006"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.9ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 1"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "ABCD1234"], ["abierto", false], ["created_at", "2024-11-12 16:03:13.414689"], ["updated_at", "2024-11-12 16:03:13.414689"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.3ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 2"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "EFGH5678"], ["abierto", true], ["created_at", "2024-11-12 16:03:13.422371"], ["updated_at", "2024-11-12 16:03:13.422371"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.4ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 3"], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "IJKL9101"], ["abierto", false], ["created_at", "2024-11-12 16:03:13.459376"], ["updated_at", "2024-11-12 16:03:13.459376"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.3ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 4"], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "MNOP1122"], ["abierto", true], ["created_at", "2024-11-12 16:03:13.466225"], ["updated_at", "2024-11-12 16:03:13.466225"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/locker_controllers" for ::1 at 2024-11-12 13:03:28 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 13:03:28 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 13:03:28 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  
+Started GET "/locker_controllers" for ::1 at 2024-11-12 13:03:28 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/locker_controllers"):
+  

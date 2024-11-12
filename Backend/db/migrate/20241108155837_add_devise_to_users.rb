@@ -31,7 +31,6 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
       t.string :provider
@@ -41,7 +40,9 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.2]
       t.index [:provider, :uid], unique: true
     end
 
-    add_index :users, :reset_password_token, unique: true
+    # Removed the duplicate add_index line for reset_password_token
+    # add_index :users, :reset_password_token, unique: true
+
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
