@@ -15,6 +15,21 @@
 # Crear un modelo de símbolo temporal
 symbol_model = SymbolModel.create!(nombre: 'Modelo Temporal', activo: true)
 
+symbol_model_id = 1
+
+# Create 6 gestures with different types and positions
+gestures_data = [
+  { symbol_model_id: symbol_model_id, gesture_type: 'five', position: 1 },
+  { symbol_model_id: symbol_model_id, gesture_type: 'left', position: 2 },
+  { symbol_model_id: symbol_model_id, gesture_type: 'stop', position: 3 },
+  { symbol_model_id: symbol_model_id, gesture_type: 'two', position: 4 },
+  { symbol_model_id: symbol_model_id, gesture_type: 'up', position: 5 },
+  { symbol_model_id: symbol_model_id, gesture_type: 'zero', position: 6 }
+]
+
+gestures_data.each do |gesture_attrs|
+  Gesture.create!(gesture_attrs)
+end
 # Crear usuarios con el symbol_model temporal
 admin_user = User.create!(
   email: 'admin@ejemplo.com',
@@ -35,15 +50,6 @@ controller1 = LockerController.create!(
   user_id: admin_user.id
 )
 
-controller2 = LockerController.create!(
-  nombre: 'Controlador 2',
-  estado: 'conectado',
-  ultima_conexion: Time.now,
-  casilleros_activos: 3,
-  alert_sent: false,
-  user_id: admin_user.id
-)
-
 # Crear Casilleros (Lockers) asociados a los Controladores
 locker1 = Locker.create!(
   nombre: 'Casillero 1',
@@ -58,22 +64,6 @@ locker2 = Locker.create!(
   locker_controller_id: controller1.id,
   owner_email: 'usuario2@ejemplo.com',
   key_sequence: 'EFGH5678',
-  abierto: true
-)
-
-locker3 = Locker.create!(
-  nombre: 'Casillero 3',
-  locker_controller_id: controller2.id,
-  owner_email: 'usuario3@ejemplo.com',
-  key_sequence: 'IJKL9101',
-  abierto: false
-)
-
-locker4 = Locker.create!(
-  nombre: 'Casillero 4',
-  locker_controller_id: controller2.id,
-  owner_email: 'usuario4@ejemplo.com',
-  key_sequence: 'MNOP1122',
   abierto: true
 )
 
