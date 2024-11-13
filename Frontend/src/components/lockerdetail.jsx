@@ -26,11 +26,12 @@ const handleSendCode = async () => {
 
 const deleteLocker = async () => {
   try {
-    await axios.delete('http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/');
-    alert('El casillero ha sido elminado correctamente');
+    await axios.delete(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}`);
+    alert('El casillero ha sido eliminado correctamente');
+    onClose();
   } catch (error) {
-    console.error('')
-    alert('Hubo un error al eliminar el cassillero') 
+    console.error('Error deleting locker:', error);
+    alert('Hubo un error al eliminar el casillero');
   }
 };
 

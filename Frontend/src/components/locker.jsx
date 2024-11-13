@@ -33,7 +33,7 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModal
       alert('Código de apertura enviado!');
     } catch (error) {
       console.error('Error enviando el email:', error);
-      alert('Hubo un error al enviar el código.');
+      alert('Hubo un error al eliminar el casillero');
     }
   };
 
@@ -143,7 +143,7 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModal
       <CreateLockerModal
         open={createLockerModalOpen}
         onClose={() => setCreateLockerModalOpen(false)}
-        controllerId={controller.id} 
+        controllerId={controller.id}  // Passing the controller ID to the modal
       />
     </>
   );
@@ -168,8 +168,6 @@ const LockerTable = () => {
 
     fetchLockerControllers();
   }, []);
-
-  
 
   if (loading) return <div>Loading...</div>;
 
@@ -209,7 +207,5 @@ const LockerTable = () => {
     </Box>
   );
 };
-
-
 
 export default LockerTable;
