@@ -3559,3 +3559,291 @@ Content-Transfer-Encoding: quoted-printable
 Completed 200 OK in 3321ms (Views: 0.2ms | ActiveRecord: 5.4ms (3 queries, 0 cached) | GC: 1.2ms)
 
 
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to ChangeKeySequenceInLockers (20241113174254)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mALTER TABLE "lockers" ALTER COLUMN "key_sequence" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241113174254') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Create (9.7ms)[0m  [1m[32mINSERT INTO "symbol_models" ("nombre", "activo", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nombre", "Modelo Temporal"], ["activo", true], ["created_at", "2024-11-13 23:34:43.337162"], ["updated_at", "2024-11-13 23:34:43.337162"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.3ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (3.4ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "five"], ["position", 1], ["created_at", "2024-11-13 23:34:43.382369"], ["updated_at", "2024-11-13 23:34:43.382369"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (1.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "left"], ["position", 2], ["created_at", "2024-11-13 23:34:43.388593"], ["updated_at", "2024-11-13 23:34:43.388593"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.4ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "stop"], ["position", 3], ["created_at", "2024-11-13 23:34:43.392408"], ["updated_at", "2024-11-13 23:34:43.392408"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.4ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "two"], ["position", 4], ["created_at", "2024-11-13 23:34:43.396055"], ["updated_at", "2024-11-13 23:34:43.396055"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.3ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "up"], ["position", 5], ["created_at", "2024-11-13 23:34:43.399482"], ["updated_at", "2024-11-13 23:34:43.399482"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.4ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "zero"], ["position", 6], ["created_at", "2024-11-13 23:34:43.402436"], ["updated_at", "2024-11-13 23:34:43.402436"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (4.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mSymbolModel Load (0.2ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "nombre", "rol", "symbol_model_id", "created_at", "updated_at", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["email", "[FILTERED]"], ["nombre", "Administrador"], ["rol", "administrador"], ["symbol_model_id", 1], ["created_at", "2024-11-13 23:34:44.035881"], ["updated_at", "2024-11-13 23:34:44.035881"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Create (3.4ms)[0m  [1m[32mINSERT INTO "locker_controllers" ("nombre", "estado", "ultima_conexion", "casilleros_activos", "alert_sent", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["nombre", "Controlador 1"], ["estado", "conectado"], ["ultima_conexion", "2024-11-13 23:34:44.042049"], ["casilleros_activos", 5], ["alert_sent", false], ["user_id", 1], ["created_at", "2024-11-13 23:34:44.054461"], ["updated_at", "2024-11-13 23:34:44.054461"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (3.1ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 1"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "ABCD1234"], ["abierto", false], ["created_at", "2024-11-13 23:34:44.069963"], ["updated_at", "2024-11-13 23:34:44.069963"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.4ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 2"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "EFGH5678"], ["abierto", true], ["created_at", "2024-11-13 23:34:44.075885"], ["updated_at", "2024-11-13 23:34:44.075885"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/locker_controllers" for ::1 at 2024-11-13 20:35:07 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (11.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 2.4ms | ActiveRecord: 24.1ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-11-13 20:35:09 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:71:in `set_locker_controller'
+  [1m[36mLocker Load (1.9ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:7:in `index'
+Completed 200 OK in 73ms (Views: 7.4ms | ActiveRecord: 8.1ms (2 queries, 0 cached) | GC: 42.1ms)
+
+
+Started POST "/locker_controllers/1/lockers/1/send_code" for ::1 at 2024-11-13 20:35:15 -0300
+Processing by LockersController#send_code as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"1"}
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:47:in `send_code'
+  [1m[36mGesture Pluck (1.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:56:in `send_code'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:57:in `send_code'
+  [1m[36mLocker Update (4.8ms)[0m  [1m[33mUPDATE "lockers" SET "key_sequence" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["key_sequence", "zero-up-five-left"], ["updated_at", "2024-11-13 23:35:15.371619"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:57:in `send_code'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:57:in `send_code'
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/send_code.html.erb within layouts/mailer
+  Rendered locker_mailer/send_code.html.erb within layouts/mailer (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.9ms | GC: 0.0ms)
+LockerMailer#send_code: processed outbound mail in 18.9ms
+Delivered mail 673537b3702b4_1820e6090937f@MacBook-Pro-de-Administrador.local.mail (4886.7ms)
+Date: Wed, 13 Nov 2024 20:35:15 -0300
+From: ialiberon@miuandes.cl
+To: ialiberon@miuandes.cl
+Message-ID: <673537b3702b4_1820e6090937f@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Tu_c=C3=B3digo_de_apertura?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/send_code.html.erb --><p>Hola,</p>=
+
+<p>Tu nuevo c=C3=B3digo de apertura es: <strong>zero-up-five-left</strong=
+></p>
+<p>Por favor, =C3=BAsalo para acceder a tu casillero.</p>
+<!-- END app/views/locker_mailer/send_code.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 4988ms (Views: 0.4ms | ActiveRecord: 10.8ms (3 queries, 0 cached) | GC: 3.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-11-13 21:21:27 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (30.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 45ms (Views: 1.1ms | ActiveRecord: 43.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Create (5.7ms)[0m  [1m[32mINSERT INTO "symbol_models" ("nombre", "activo", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nombre", "Modelo Temporal"], ["activo", true], ["created_at", "2024-11-24 15:58:23.560974"], ["updated_at", "2024-11-24 15:58:23.560974"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (32.4ms)[0m  [1m[35mCREATE DATABASE "backend_development" ENCODING = 'unicode'[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (61.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_development"[0m
+  [1m[35m (34.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_test"[0m
+  [1m[35m (133.6ms)[0m  [1m[35mCREATE DATABASE "backend_development" ENCODING = 'unicode'[0m
+  [1m[35m (50.6ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-24 15:59:05.723535', '2024-11-24 15:59:05.723538') RETURNING "key"[0m
+Migrating to CreateSymbolModels (20241108151908)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "symbol_models" ("id" bigserial primary key, "nombre" character varying NOT NULL, "activo" boolean DEFAULT TRUE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_symbol_models_on_nombre" ON "symbol_models" ("nombre")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108151908') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20241108152026)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "nombre" character varying NOT NULL, "rol" character varying DEFAULT 'administrador' NOT NULL, "symbol_model_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3f7634dfe8"
+FOREIGN KEY ("symbol_model_id")
+  REFERENCES "symbol_models" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_symbol_model_id" ON "users" ("symbol_model_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_rol" ON "users" ("rol")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108152026') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGestures (20241108152258)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "gestures" ("id" bigserial primary key, "symbol_model_id" bigint NOT NULL, "gesture_type" character varying NOT NULL, "position" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7281c1ea9c"
+FOREIGN KEY ("symbol_model_id")
+  REFERENCES "symbol_models" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_gestures_on_symbol_model_id" ON "gestures" ("symbol_model_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_gestures_on_model_and_gesture_and_position" ON "gestures" ("symbol_model_id", "gesture_type", "position")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108152258') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockerControllers (20241108154338)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "locker_controllers" ("id" bigserial primary key, "nombre" character varying NOT NULL, "estado" character varying DEFAULT 'conectado' NOT NULL, "ultima_conexion" timestamp(6), "casilleros_activos" integer DEFAULT 0 NOT NULL, "alert_sent" boolean DEFAULT FALSE NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5f776930b8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_locker_controllers_on_user_id" ON "locker_controllers" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_locker_controllers_on_nombre" ON "locker_controllers" ("nombre")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_locker_controllers_on_estado" ON "locker_controllers" ("estado")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154338') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockers (20241108154406)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "lockers" ("id" bigserial primary key, "nombre" character varying NOT NULL, "locker_controller_id" bigint NOT NULL, "owner_email" character varying NOT NULL, "key_sequence" character varying NOT NULL, "abierto" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_2a2db35431"
+FOREIGN KEY ("locker_controller_id")
+  REFERENCES "locker_controllers" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_lockers_on_locker_controller_id" ON "lockers" ("locker_controller_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_lockers_on_controller_and_nombre" ON "lockers" ("locker_controller_id", "nombre")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_lockers_on_owner_email" ON "lockers" ("owner_email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLockerEvents (20241108154430)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "locker_events" ("id" bigserial primary key, "locker_id" bigint NOT NULL, "event_type" character varying NOT NULL, "timestamp" timestamp(6) NOT NULL, "ip_address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_10be6a8312"
+FOREIGN KEY ("locker_id")
+  REFERENCES "lockers" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_locker_events_on_locker_id" ON "locker_events" ("locker_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_locker_events_on_locker_and_event_and_timestamp" ON "locker_events" ("locker_id", "event_type", "timestamp")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108154430') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDeviseToUsers (20241108155837)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "provider" character varying[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_provider_and_uid" ON "users" ("provider", "uid")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241108155837') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeKeySequenceInLockers (20241113174254)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "lockers" ALTER COLUMN "key_sequence" SET NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241113174254') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5073945470573576205)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Create (0.8ms)[0m  [1m[32mINSERT INTO "symbol_models" ("nombre", "activo", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["nombre", "Modelo Temporal"], ["activo", true], ["created_at", "2024-11-24 15:59:05.853447"], ["updated_at", "2024-11-24 15:59:05.853447"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.3ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "five"], ["position", 1], ["created_at", "2024-11-24 15:59:05.864545"], ["updated_at", "2024-11-24 15:59:05.864545"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "left"], ["position", 2], ["created_at", "2024-11-24 15:59:05.867309"], ["updated_at", "2024-11-24 15:59:05.867309"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "stop"], ["position", 3], ["created_at", "2024-11-24 15:59:05.872229"], ["updated_at", "2024-11-24 15:59:05.872229"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "two"], ["position", 4], ["created_at", "2024-11-24 15:59:05.874894"], ["updated_at", "2024-11-24 15:59:05.874894"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "up"], ["position", 5], ["created_at", "2024-11-24 15:59:05.877484"], ["updated_at", "2024-11-24 15:59:05.877484"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGesture Create (0.1ms)[0m  [1m[32mINSERT INTO "gestures" ("symbol_model_id", "gesture_type", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["symbol_model_id", 1], ["gesture_type", "zero"], ["position", 6], ["created_at", "2024-11-24 15:59:05.879957"], ["updated_at", "2024-11-24 15:59:05.879957"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mSymbolModel Load (0.1ms)[0m  [1m[34mSELECT "symbol_models".* FROM "symbol_models" WHERE "symbol_models"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "nombre", "rol", "symbol_model_id", "created_at", "updated_at", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "provider", "uid") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["email", "[FILTERED]"], ["nombre", "Administrador"], ["rol", "administrador"], ["symbol_model_id", 1], ["created_at", "2024-11-24 15:59:06.158345"], ["updated_at", "2024-11-24 15:59:06.158345"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["provider", nil], ["uid", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Create (1.5ms)[0m  [1m[32mINSERT INTO "locker_controllers" ("nombre", "estado", "ultima_conexion", "casilleros_activos", "alert_sent", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["nombre", "Controlador 1"], ["estado", "conectado"], ["ultima_conexion", "2024-11-24 15:59:06.161856"], ["casilleros_activos", 5], ["alert_sent", false], ["user_id", 1], ["created_at", "2024-11-24 15:59:06.168944"], ["updated_at", "2024-11-24 15:59:06.168944"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (1.6ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 1"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "ABCD1234"], ["abierto", false], ["created_at", "2024-11-24 15:59:06.180862"], ["updated_at", "2024-11-24 15:59:06.180862"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLocker Create (0.3ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Casillero 2"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "EFGH5678"], ["abierto", true], ["created_at", "2024-11-24 15:59:06.185082"], ["updated_at", "2024-11-24 15:59:06.185082"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
