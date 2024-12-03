@@ -190,6 +190,7 @@ const LockerTable = () => {
   const [lockerControllers, setLockerControllers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [createLockerModalOpen, setCreateLockerModalOpen] = useState(false);
+  const [createControllerModalOpen, setCreateControllerModalOpen] = useState(false); // Estado para el modal de creación de controladores
 
   useEffect(() => {
     const fetchLockerControllers = async () => {
@@ -206,6 +207,10 @@ const LockerTable = () => {
     fetchLockerControllers();
   }, []);
 
+  const handleControllerCreated = (newController) => {
+    setLockerControllers((prev) => [...prev, newController]);
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -217,8 +222,8 @@ const LockerTable = () => {
         <Table>
           <TableBody>
             {lockerControllers.map((controller) => (
-              <ControllerRow 
-                key={controller.id} 
+              <ControllerRow
+                key={controller.id}
                 controller={controller}
                 setCreateLockerModalOpen={setCreateLockerModalOpen}
                 createLockerModalOpen={createLockerModalOpen}
@@ -227,7 +232,7 @@ const LockerTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <Button
+      <Button
         variant="contained"
         size="small"
         sx={{
@@ -238,9 +243,15 @@ const LockerTable = () => {
             bgcolor: '#FFCC80',
           }
         }}
+        onClick={() => setCreateControllerModalOpen(true)}
       >
         AÑADIR NUEVO CONTROLADOR
-      </Button> */}
+      </Button>
+      <CreateControllerModal
+        open={createControllerModalOpen}
+        onClose={() => setCreateControllerModalOpen(false)}
+        onControllerCreated={handleControllerCreated}
+      />
     </Box>
   );
 };
