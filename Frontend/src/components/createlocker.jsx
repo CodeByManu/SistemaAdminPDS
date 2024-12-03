@@ -16,7 +16,7 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
   const [lockerData, setLockerData] = useState({
     nombre: '',
     owner_email: '',
-    locker_controller_id: controllerId, // Correctly passing the controller ID here
+    locker_controller_id: controllerId,
   });
 
   const handleChange = (e) => {
@@ -28,21 +28,17 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
 
   const handleCreateLocker = async () => {
     try {
-      // Print locker_controller_id to see what it contains
-      console.log('locker_controller_id:', lockerData.locker_controller_id);
-  
-      // Ensure you're using lockerData to get the fields
       const newLockerData = {
         nombre: lockerData.nombre,
         owner_email: lockerData.owner_email,
-        locker_controller_id: lockerData.locker_controller_id, // Use lockerData here
       };
-  
-      await axios.post(
-        `http://localhost:3000/locker_controllers/${lockerData.locker_controller_id}/lockers`, // Correct reference
+
+      // Utilizar el ID del controlador especificado
+      const response = await axios.post(
+        `http://localhost:3000/locker_controllers/${lockerData.locker_controller_id}/lockers`,
         newLockerData
       );
-  
+
       alert('Casillero creado exitosamente!');
       onClose();
     } catch (error) {
@@ -50,7 +46,7 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
       alert('Hubo un error al crear el casillero.');
     }
   };
-  
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogContent sx={{ bgcolor: '#FFF8E1', p: 0 }}>

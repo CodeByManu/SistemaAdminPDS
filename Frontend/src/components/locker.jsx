@@ -19,7 +19,29 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LockerDetailsModal from './lockerdetail';
 import CreateLockerModal from './createlocker';
 
-  const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModalOpen }) => {
+import React, { useState, useEffect } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  IconButton,
+  Button,
+  Box,
+  Typography,
+  Collapse
+} from '@mui/material';
+import axios from 'axios';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import LockerDetailsModal from './lockerdetail';
+import CreateLockerModal from './createlocker';
+import CreateControllerModal from './createcontrollermodal'; // Nuevo modal
+
+const ControllerRow = ({ controller, setCreateLockerModalOpen }) => {
   const [open, setOpen] = useState(false);
   const [lockers, setLockers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,55 +50,49 @@ import CreateLockerModal from './createlocker';
 
   const handleRequestCode = async (lockerControllerId, lockerId) => {
     try {
-      const response = await axios.post(`http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`);
-      console.log('Email enviado correctamente:', response.data);
-      alert('Código de apertura enviado!');
+      const response = await axios.post(
+        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`
+      );
+      alert('Código de apertura enviado correctamente!');
     } catch (error) {
-      console.error('Error enviando el email:', error);
-      alert('Hubo un error al enviar el código');
+      alert('Error enviando el código. Verifica la configuración.');
     }
   };
 
   const handleToggleLockerState = async (lockerControllerId, locker, index) => {
     try {
       const newState = !locker.abierto;
-      const payload = {
-        abierto: newState,
-        servo: index,
-      }
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
-        payload
+        { abierto: newState, servo: index }
       );
-      console.log('Estado del casillero actualizado:', response.data);
-      // Actualizar el estado local
-      setLockers((prevLockers) =>
-        prevLockers.map((l) =>
+      setLockers((prev) =>
+        prev.map((l) =>
           l.id === locker.id ? { ...l, abierto: newState } : l
         )
       );
-      // alert(`El casillero fue ${newState ? 'abierto' : 'cerrado'} exitosamente!`);
     } catch (error) {
-      console.error('Error actualizando el estado del casillero:', error);
       alert('Hubo un error al cambiar el estado del casillero.');
     }
   };
 
   useEffect(() => {
     const fetchLockers = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/locker_controllers/${controller.id}/lockers`);
-        setLockers(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching lockers:', error);
-        setLoading(false);
+      if (open) {
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/locker_controllers/${controller.id}/lockers`
+          );
+          setLockers(response.data);
+        } catch {
+          alert('Error al cargar los casilleros.');
+        } finally {
+          setLoading(false);
+        }
       }
     };
 
-    if (open) {
-      fetchLockers();
-    }
+    fetchLockers();
   }, [open, controller.id]);
 
   return (
@@ -89,7 +105,7 @@ import CreateLockerModal from './createlocker';
         </TableCell>
         <TableCell colSpan={4}>
           <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-            {controller.nombre}
+            {controller.nombre || 'Controlador sin registrar'}
           </Typography>
         </TableCell>
       </TableRow>
@@ -98,69 +114,72 @@ import CreateLockerModal from './createlocker';
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ py: 2 }}>
-              <TableContainer component={Paper} elevation={0} sx={{ bgcolor: '#FFF8E1' }}>
-                <Table size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell sx={{ fontWeight: 'bold' }}>NOMBRE</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold' }}>DUEÑO</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold' }}>ESTADO</TableCell>
-                      <TableCell align="right"></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {loading ? (
+              {controller.id ? (
+                <TableContainer component={Paper} elevation={0} sx={{ bgcolor: '#FFF8E1' }}>
+                  <Table size="small">
+                    <TableHead>
                       <TableRow>
-                        <TableCell colSpan={4} align="center">Loading lockers...</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold' }}>NOMBRE</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold' }}>DUEÑO</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold' }}>ESTADO</TableCell>
+                        <TableCell align="right"></TableCell>
                       </TableRow>
-                    ) : (
-                      lockers.map((locker) => (
-                        <TableRow key={locker.id}>
-                          <TableCell>{locker.nombre}</TableCell>
-                          <TableCell>{locker.owner_email}</TableCell>
-                          <TableCell>{locker.abierto ? 'Abierto' : 'Cerrado'}</TableCell>
-                          <TableCell align="right">
-                            <Button
-                              variant="contained"
-                              size="small"
-                              sx={{ mr: 1, bgcolor: '#FFCDD2', color: 'black' }}
-                              onClick={() => handleRequestCode(controller.id, locker.id)}
-                            >
-                              PEDIR CLAVE
-                            </Button>
-                            <Button 
-                              variant="contained" 
-                              size="small" 
-                              sx={{ bgcolor: '#FFE0B2', color: 'black', mr: 1 }}
-                              onClick={() => {
-                                setSelectedLocker(locker);
-                                setDetailsModalOpen(true);
-                              }}
-                            >
-                              VER DETALLES
-                            </Button>
-                            <Button
-                              variant="contained"
-                              size="small"
-                              sx={{
-                                bgcolor: locker.abierto ? '#81C784' : '#E57373', // Verde si está abierto, rojo si está cerrado
-                                color: 'black',
-                                width: '72px',
-                              }}
-                              onClick={() => handleToggleLockerState(controller.id, locker, lockers.indexOf(locker) + 1)}
-                            >
-                              {locker.abierto ? 'Cerrar' : 'Abrir'}
-                            </Button>
+                    </TableHead>
+                    <TableBody>
+                      {loading ? (
+                        <TableRow>
+                          <TableCell colSpan={4} align="center">
+                            Cargando casilleros...
                           </TableCell>
                         </TableRow>
-                      ))
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Button 
-                variant="contained" 
-                size="small" 
+                      ) : (
+                        lockers.map((locker, index) => (
+                          <TableRow key={locker.id}>
+                            <TableCell>{locker.nombre}</TableCell>
+                            <TableCell>{locker.owner_email}</TableCell>
+                            <TableCell>{locker.abierto ? 'Abierto' : 'Cerrado'}</TableCell>
+                            <TableCell align="right">
+                              <Button
+                                variant="contained"
+                                size="small"
+                                sx={{ mr: 1, bgcolor: '#FFCDD2', color: 'black' }}
+                                onClick={() =>
+                                  handleRequestCode(controller.id, locker.id)
+                                }
+                              >
+                                PEDIR CLAVE
+                              </Button>
+                              <Button
+                                variant="contained"
+                                size="small"
+                                sx={{
+                                  bgcolor: locker.abierto
+                                    ? '#81C784'
+                                    : '#E57373',
+                                  color: 'black',
+                                  width: '72px',
+                                }}
+                                onClick={() =>
+                                  handleToggleLockerState(controller.id, locker, index + 1)
+                                }
+                              >
+                                {locker.abierto ? 'Cerrar' : 'Abrir'}
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              ) : (
+                <Typography>
+                  Este controlador no está registrado. Añádelo manualmente.
+                </Typography>
+              )}
+              <Button
+                variant="contained"
+                size="small"
                 sx={{ mt: 2, bgcolor: '#FFE0B2', color: 'black' }}
                 onClick={() => setCreateLockerModalOpen(true)}
               >
