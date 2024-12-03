@@ -17,36 +17,17 @@ import axios from 'axios';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LockerDetailsModal from './lockerdetail';
-import CreateLockerModal from './createlocker';
+import CreateLockerModal from './createlocker'; 
+import CreateControllerModal from './createcontroller'; // Nuevo modal
 
-import React, { useState, useEffect } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-  Button,
-  Box,
-  Typography,
-  Collapse
-} from '@mui/material';
-import axios from 'axios';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import LockerDetailsModal from './lockerdetail';
-import CreateLockerModal from './createlocker';
-import CreateControllerModal from './createcontrollermodal'; // Nuevo modal
-
-const ControllerRow = ({ controller, setCreateLockerModalOpen }) => {
+const ControllerRow = ({ controller, controller_id }) => {
   const [open, setOpen] = useState(false);
   const [lockers, setLockers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLocker, setSelectedLocker] = useState(null);
+  const [selectedController, setSelectedController] = useState(null);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+  const [createLockerModalOpen, setCreateLockerModalOpen] = useState(false);
 
   const handleRequestCode = async (lockerControllerId, lockerId) => {
     try {
@@ -149,6 +130,17 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen }) => {
                               >
                                 PEDIR CLAVE
                               </Button>
+                              <Button 
+                                variant="contained" 
+                                size="small" 
+                                sx={{ bgcolor: '#FFE0B2', color: 'black' }}
+                                onClick={() => {
+                                  setSelectedLocker(locker);
+                                  setDetailsModalOpen(true);
+                                }}
+                              >
+                                VER DETALLES
+                              </Button>
                               <Button
                                 variant="contained"
                                 size="small"
@@ -181,7 +173,11 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen }) => {
                 variant="contained"
                 size="small"
                 sx={{ mt: 2, bgcolor: '#FFE0B2', color: 'black' }}
-                onClick={() => setCreateLockerModalOpen(true)}
+                onClick={() => {
+                    setCreateLockerModalOpen(true)
+                    setSelectedController(controller.id)
+                  }
+                  }
               >
                 AÑADIR NUEVO CASILLERO
               </Button>
@@ -199,7 +195,7 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen }) => {
       <CreateLockerModal
         open={createLockerModalOpen}
         onClose={() => setCreateLockerModalOpen(false)}
-        controllerId={controller.id}
+        controllerId={selectedController}
       />
     </>
   );
@@ -246,6 +242,7 @@ const LockerTable = () => {
                 controller={controller}
                 setCreateLockerModalOpen={setCreateLockerModalOpen}
                 createLockerModalOpen={createLockerModalOpen}
+                controller_id={controller.id}
               />
             ))}
           </TableBody>

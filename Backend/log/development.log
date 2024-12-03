@@ -21172,3 +21172,2462 @@ Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.9ms (1 query, 0 cached) 
 Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/locker_controllers" for ::1 at 2024-12-03 16:46:34 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 16:46:34 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (12.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (12.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 63ms (Views: 18.8ms | ActiveRecord: 36.1ms (1 query, 0 cached) | GC: 22.3ms)
+
+
+Completed 200 OK in 56ms (Views: 10.1ms | ActiveRecord: 45.8ms (1 query, 0 cached) | GC: 22.9ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 16:46:56 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 21ms (Views: 7.8ms | ActiveRecord: 5.4ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:46:58 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (3.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:46:58.142514"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 5.6ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:46:58 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.1ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:46:58.866073"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.8ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:46:59 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.2ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:46:59.714915"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:00 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.3ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:00.420555"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:00 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:00.935008"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:01 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.9ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:01.500693"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:02 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:02.135554"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:02 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.0ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:02.716624"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:03 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.1ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:03.433046"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:04 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:04.101104"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:04 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:04.735443"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 6.8ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:05 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.5ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:05.385719"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 3.2ms (2 queries, 0 cached) | GC: 0.8ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:06 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.4ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:06.034387"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:06 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.3ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:06.631149"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:47:07 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:07.301732"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:47:07 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:07.897818"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:47:08 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.0ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:08.451372"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 2.8ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started PUT "/locker_controllers/1/lockers/3" for ::1 at 2024-12-03 16:47:09 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>3, "locker_controller_id"=>"1", "id"=>"3", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:09.052096"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":3}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/3" for ::1 at 2024-12-03 16:47:10 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>3, "locker_controller_id"=>"1", "id"=>"3", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:10.048424"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":3}
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:10 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:47:10.616041"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:47:12 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.9ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:12.231632"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 16:47:12 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.3ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:47:12.783226"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 3.0ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 16:47:28 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:48:42 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.0ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:48:42.358329"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:48:42 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.3ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:48:43.008108"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:48:44 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.5ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 19:48:44.041377"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2}
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 3.3ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started PUT "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 16:48:44 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "locker_controller_id"=>"1", "id"=>"1", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 19:48:44.536121"], ["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2}
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:33 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:33 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (8.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (14.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 54ms (Views: 29.0ms | ActiveRecord: 24.9ms (1 query, 0 cached) | GC: 29.2ms)
+
+
+Completed 200 OK in 68ms (Views: 10.4ms | ActiveRecord: 48.8ms (1 query, 0 cached) | GC: 31.5ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:38 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:38 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:43 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:08:43 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (1.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:14 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:14 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (16.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  [1m[36mLockerController Load (15.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 3.8ms | ActiveRecord: 16.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Completed 200 OK in 19ms (Views: 3.2ms | ActiveRecord: 15.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:15 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:15 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mLockerController Load (1.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:19 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:10:19 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:10:26 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (1.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 38ms (Views: 8.7ms | ActiveRecord: 12.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:10:46 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Test", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Test", "owner_email"=>"[FILTERED]"}}
+  [1m[36mGesture Pluck (1.1ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 14ms (Views: 6.2ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:11:14 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:11:14 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (4.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  [1m[36mLockerController Load (2.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 23ms (Views: 14.0ms | ActiveRecord: 4.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:11:17 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (2.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (1.0ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 13ms (Views: 3.7ms | ActiveRecord: 4.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:11:34 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"sdfsa", "estado"=>"sadfsdaf"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+Completed 422 Unprocessable Content in 20ms (Views: 0.3ms | ActiveRecord: 10.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:14:12 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (14.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 7.8ms | ActiveRecord: 14.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:14:16 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (4.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.8ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 15ms (Views: 4.9ms | ActiveRecord: 5.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/1/lockers/3" for ::1 at 2024-12-03 18:14:17 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"3", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (6.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:14:17.734798"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 35ms (Views: 0.2ms | ActiveRecord: 8.4ms (2 queries, 0 cached) | GC: 10.5ms)
+
+
+Started PUT "/locker_controllers/1/lockers/3" for ::1 at 2024-12-03 18:14:18 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"3", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.5ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:14:18.706857"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 3.3ms (2 queries, 0 cached) | GC: 2.4ms)
+
+
+Started POST "/locker_controllers/1/lockers/3/send_code" for ::1 at 2024-12-03 18:14:21 -0300
+Processing by LockersController#send_code as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"3"}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:55:in `send_code'
+  [1m[36mGesture Pluck (1.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:64:in `send_code'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:65:in `send_code'
+  [1m[36mLocker Update (2.8ms)[0m  [1m[33mUPDATE "lockers" SET "key_sequence" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["key_sequence", "zero-five-stop-two"], ["updated_at", "2024-12-03 21:14:21.792226"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:65:in `send_code'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:65:in `send_code'
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/send_code.html.erb within layouts/mailer
+  Rendered locker_mailer/send_code.html.erb within layouts/mailer (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.5ms | GC: 0.0ms)
+LockerMailer#send_code: processed outbound mail in 11.5ms
+Delivered mail 674f74adcee42_17fd86040-4f7@MacBook-Pro-de-Administrador.local.mail (4588.2ms)
+Date: Tue, 03 Dec 2024 18:14:21 -0300
+From: manueltagle2002@gmail.com
+To: manueltagle2002@gmail.com
+Message-ID: <674f74adcee42_17fd86040-4f7@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Tu_c=C3=B3digo_de_apertura?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/send_code.html.erb --><!DOCTYPE ht=
+ml>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Hola!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+nuevo c=C3=B3digo de apertura es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        zero-five-stop-two
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Por=
+ favor, =C3=BAsalo para acceder a tu casillero.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/send_code.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 4650ms (Views: 0.4ms | ActiveRecord: 4.6ms (3 queries, 0 cached) | GC: 4.8ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:15:12 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Testeo", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Testeo", "owner_email"=>"[FILTERED]"}}
+  [1m[36mGesture Pluck (1.1ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 7ms (Views: 0.6ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:22:28 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Testeo", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Testeo", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (1.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (1.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 16ms (Views: 1.2ms | ActiveRecord: 14.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:22:33 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:22:34 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (1.6ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:22:43 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"asdfsafsad", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"asdfsafsad", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (1.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.3ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 33ms (Views: 0.5ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 19.2ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:24:47 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"asdfsafsad", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"asdfsafsad", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (1.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:106:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:19:in `create'
+Completed 422 Unprocessable Content in 35ms (Views: 1.3ms | ActiveRecord: 32.5ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:25:32 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"asdfsafsad", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"asdfsafsad", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (7.2ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "asdfsafsad"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "zero-up-two-five"], ["abierto", false], ["created_at", "2024-12-03 21:25:32.708590"], ["updated_at", "2024-12-03 21:25:32.708590"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 44ms (Views: 0.3ms | ActiveRecord: 21.8ms (4 queries, 0 cached) | GC: 5.6ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:25:41 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 5.7ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 1.3ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:26:01 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Holaquetal", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Holaquetal", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.4ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (0.5ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Holaquetal"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "up-stop-five-zero"], ["abierto", false], ["created_at", "2024-12-03 21:26:02.000803"], ["updated_at", "2024-12-03 21:26:02.000803"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 13ms (Views: 0.2ms | ActiveRecord: 1.7ms (4 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:26:06 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:27:04 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"Controlador 2", "estado"=>"Abierto"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+Completed 422 Unprocessable Content in 13ms (Views: 0.3ms | ActiveRecord: 8.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:30:43 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"Controlador 2", "estado"=>"Abierto"}, "user_id"=>1}
+Completed 422 Unprocessable Content in 5ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:30:51 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"Controlador 2", "estado"=>"Abierto"}, "user_id"=>1}
+Completed 422 Unprocessable Content in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:30:56 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"Controlador 2", "estado"=>"Abierto"}, "user_id"=>1}
+Completed 422 Unprocessable Content in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers" for ::1 at 2024-12-03 18:34:57 -0300
+Processing by LockerControllersController#create as HTML
+  Parameters: {"locker_controller"=>{"nombre"=>"Controlador 2", "estado"=>"Abierto", "user_id"=>1}}
+  [1m[36mTRANSACTION (12.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+  [1m[36mLockerController Create (3.6ms)[0m  [1m[32mINSERT INTO "locker_controllers" ("nombre", "estado", "ultima_conexion", "casilleros_activos", "alert_sent", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["nombre", "Controlador 2"], ["estado", "Abierto"], ["ultima_conexion", nil], ["casilleros_activos", 0], ["alert_sent", false], ["user_id", 1], ["created_at", "2024-12-03 21:34:57.753368"], ["updated_at", "2024-12-03 21:34:57.753368"]]
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/locker_controllers_controller.rb:15:in `create'
+Completed 201 Created in 69ms (Views: 0.9ms | ActiveRecord: 49.8ms (2 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:35:04 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:35:05 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:35:15 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"holña ", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"holña ", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (1.0ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (0.6ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "holña "], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "two-stop-up-five"], ["abierto", false], ["created_at", "2024-12-03 21:35:15.103193"], ["updated_at", "2024-12-03 21:35:15.103193"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 17ms (Views: 0.7ms | ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:35:18 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:35:20 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:35:21 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 16ms (Views: 13.3ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 8.7ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:35:29 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"sadfsaf", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"sadfsaf", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.3ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (0.9ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "sadfsaf"], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "two-zero-up-five"], ["abierto", false], ["created_at", "2024-12-03 21:35:30.020181"], ["updated_at", "2024-12-03 21:35:30.020181"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 9ms (Views: 0.1ms | ActiveRecord: 2.6ms (4 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:35:34 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:35:36 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:38:59 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:38:59 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:38:59 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 18ms (Views: 3.4ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mLockerController Load (22.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: -4.9ms | ActiveRecord: 31.9ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.8ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 24ms (Views: 1.6ms | ActiveRecord: 11.2ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:39:15 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:39:15 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (6.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 37ms (Views: 25.8ms | ActiveRecord: 6.2ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+  [1m[36mLockerController Load (19.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 5.1ms | ActiveRecord: 19.7ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:39:57 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:39:57 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (7.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 9.0ms | ActiveRecord: 7.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (6.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 10.6ms | ActiveRecord: 6.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:40:04 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (2.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.8ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 11ms (Views: 3.8ms | ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:06 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (4.4ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:06.599134"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 19ms (Views: 0.9ms | ActiveRecord: 6.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:07 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.2ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:07.299215"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 3.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:08 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (3.0ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:08.128904"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 3.9ms (2 queries, 0 cached) | GC: 1.1ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:08 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.9ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:08.789814"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:10 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.1ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:10.418806"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:13 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:13.293038"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 2.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:14 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:14.138422"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 1.9ms)
+
+
+Started PUT "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 18:41:14 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"2", "id"=>"6", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.2ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:14.713820"], ["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:41:16 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:17 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:17.281297"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 3.4ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:17 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:18.006738"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:18 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:18.588761"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:19 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:19.040299"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:19 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.3ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:19.457939"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:19 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:19.938567"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:20 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 21:41:20.467755"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1}
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.6ms (2 queries, 0 cached) | GC: 1.3ms)
+
+
+Started PUT "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 18:41:20 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "locker_controller_id"=>"1", "id"=>"2", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 21:41:20.856070"], ["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1}
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:41:25 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:42:26 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (1.6ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (5.4ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", ""], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "up-five-zero-stop"], ["abierto", false], ["created_at", "2024-12-03 21:42:26.941912"], ["updated_at", "2024-12-03 21:42:26.941912"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 23ms (Views: 0.4ms | ActiveRecord: 9.4ms (4 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:42:30 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 3.7ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:42:32 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.3ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (5.1ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", ""], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "five-left-stop-up"], ["abierto", false], ["created_at", "2024-12-03 21:42:32.768867"], ["updated_at", "2024-12-03 21:42:32.768867"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 6.2ms (4 queries, 0 cached) | GC: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_lockers_on_controller_and_nombre"
+DETAIL:  Key (locker_controller_id, nombre)=(2, ) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_lockers_on_controller_and_nombre"
+DETAIL:  Key (locker_controller_id, nombre)=(2, ) already exists.
+)
+  
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:45:32 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:45:32 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 18:45:32 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (2.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Processing by LockerControllersController#index as HTML
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 16ms (Views: 4.0ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mLockerController Load (21.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 26ms (Views: -7.7ms | ActiveRecord: 32.2ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 34ms (Views: 1.8ms | ActiveRecord: 14.0ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 18:57:46 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:57:46 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (25.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 34ms (Views: -6.0ms | ActiveRecord: 37.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (1.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 48ms (Views: 1.9ms | ActiveRecord: 14.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 18:57:59 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:02:12 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (14.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 22ms (Views: 7.1ms | ActiveRecord: 14.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:02:15 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:02:22 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:02:27 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (2.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (1.0ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 13ms (Views: 3.1ms | ActiveRecord: 3.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:02:43 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:02:54 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (3.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (6.8ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", ""], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "zero-left-five-two"], ["abierto", false], ["created_at", "2024-12-03 22:02:54.985104"], ["updated_at", "2024-12-03 22:02:54.985104"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 10.8ms (4 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_lockers_on_controller_and_nombre"
+DETAIL:  Key (locker_controller_id, nombre)=(2, ) already exists.
+):
+
+Causes:
+PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_lockers_on_controller_and_nombre"
+DETAIL:  Key (locker_controller_id, nombre)=(2, ) already exists.
+)
+  
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:02:59 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/8" for ::1 at 2024-12-03 19:03:03 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>3, "locker_controller_id"=>"2", "id"=>"8", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (3.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-03 22:03:03.892955"], ["id", 8]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":3}
+Completed 200 OK in 12ms (Views: 0.6ms | ActiveRecord: 4.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/locker_controllers/2/lockers/8" for ::1 at 2024-12-03 19:03:04 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>3, "locker_controller_id"=>"2", "id"=>"8", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-03 22:03:04.440988"], ["id", 8]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":3}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/locker_controllers/2/lockers/8" for ::1 at 2024-12-03 19:03:05 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"2", "id"=>"8"}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (4.8ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 10ms (ActiveRecord: 5.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/2" for ::1 at 2024-12-03 19:03:12 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"2"}
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (3.0ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 9ms (ActiveRecord: 4.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/5" for ::1 at 2024-12-03 19:03:16 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"5"}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (0.8ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 3ms (ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/4" for ::1 at 2024-12-03 19:03:19 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"4"}
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (1.5ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 8ms (ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:03:23 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:03:25 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:04 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:04 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.6ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 29ms (Views: 2.1ms | ActiveRecord: 9.1ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:10 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:10 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  Parameters: {"locker_controller_id"=>"1"}
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:22 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:22 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (2.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:25 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:25 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:30 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:30 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:31 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:31 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLocker Load (1.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:50 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:50 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  Parameters: {"locker_controller_id"=>"1"}
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:05:53 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:05:53 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:06:10 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:06:13 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:06:27 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:06:27 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (1.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+  [1m[36mLockerController Load (6.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 6.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:06:32 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 3.9ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:06:48 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Cito", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"Cito", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.5ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (1.6ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Cito"], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "stop-left-five-up"], ["abierto", false], ["created_at", "2024-12-03 22:06:48.349639"], ["updated_at", "2024-12-03 22:06:48.349639"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 13ms (Views: 0.3ms | ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:06:51 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 12ms (Views: 1.6ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 7.5ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:06:53 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:23 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (2.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:33 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:34 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:36 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:38 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:43 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:52 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (1.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:54 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:10:57 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:11:00 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:11:16 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:11:25 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:11:25 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:11:32 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:12:13 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.1ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 2.2ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/null/lockers" for ::1 at 2024-12-03 19:12:19 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"afsafd", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"null", "locker"=>{"nombre"=>"afsafd", "locker_controller_id"=>"null", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LockerController with 'id'=null):
+  
+app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Started POST "/locker_controllers/null/lockers" for ::1 at 2024-12-03 19:12:47 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"afsafd", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"null", "locker"=>{"nombre"=>"afsafd", "locker_controller_id"=>"null", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (2.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Completed 404 Not Found in 9ms (ActiveRecord: 2.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LockerController with 'id'=null):
+  
+app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:14:01 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:14:01 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (10.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 4.1ms | ActiveRecord: 10.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (1.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 51ms (Views: 3.7ms | ActiveRecord: 15.3ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:14:09 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/null/lockers" for ::1 at 2024-12-03 19:15:25 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"afsafd", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"null", "locker"=>{"nombre"=>"afsafd", "locker_controller_id"=>"null", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (1.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Completed 404 Not Found in 8ms (ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find LockerController with 'id'=null):
+  
+app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:08 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:08 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (9.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 7.6ms | ActiveRecord: 9.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (33.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 35ms (Views: -9.3ms | ActiveRecord: 44.2ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:16 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:16 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:21 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:21 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:23 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:19:23 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:19:27 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.8ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 20ms (Views: 8.7ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:19:32 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:21:24 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:21:24 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:21:24 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (3.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 13ms (Views: 3.5ms | ActiveRecord: 3.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.9ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 29ms (Views: 17.0ms | ActiveRecord: 5.2ms (2 queries, 0 cached) | GC: 10.2ms)
+
+
+  [1m[36mLockerController Load (36.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 39ms (Views: -22.6ms | ActiveRecord: 60.8ms (1 query, 0 cached) | GC: 11.3ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:21:26 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:21:26 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:21:26 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.9ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  [1m[36mLocker Load (0.9ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 3.2ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:21:40 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:21:40 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:21:40 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  [1m[36mLockerController Load (1.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  Parameters: {"locker_controller_id"=>"1"}
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Processing by LockersController#index as HTML
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 2.7ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:21:46 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:21:46 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:21:46 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+  [1m[36mLockerController Load (1.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLockerController Load (1.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.6ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+  [1m[36mLocker Load (1.0ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:26:30 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (13.0ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 22ms (Views: 7.4ms | ActiveRecord: 13.0ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:27:02 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:27:08 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (1.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 3.2ms | ActiveRecord: 1.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:27:22 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"sadfsaf", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"sadfsaf", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (2.5ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 8ms (Views: 0.8ms | ActiveRecord: 3.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:27:41 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 2.9ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:27:50 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"asdfsadf", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"asdfsadf", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.4ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+Completed 422 Unprocessable Content in 10ms (Views: 1.1ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:29:11 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"sadfsaf", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"sadfsaf", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.4ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.1ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (6.3ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "sadfsaf"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "stop-two-zero-up"], ["abierto", false], ["created_at", "2024-12-03 22:29:12.009058"], ["updated_at", "2024-12-03 22:29:12.009058"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 30ms (Views: 0.4ms | ActiveRecord: 8.8ms (4 queries, 0 cached) | GC: 4.4ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:29:16 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:29:21 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 14ms (Views: 1.5ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 7.8ms)
+
+
+Started DELETE "/locker_controllers/2/lockers/6" for ::1 at 2024-12-03 19:29:23 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"2", "id"=>"6"}
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (5.1ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 13ms (ActiveRecord: 6.0ms (2 queries, 0 cached) | GC: 2.0ms)
+
+
+Started DELETE "/locker_controllers/2/lockers/7" for ::1 at 2024-12-03 19:29:27 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"2", "id"=>"7"}
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (2.5ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 8ms (ActiveRecord: 3.1ms (2 queries, 0 cached) | GC: 2.0ms)
+
+
+Started DELETE "/locker_controllers/2/lockers/11" for ::1 at 2024-12-03 19:29:30 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"2", "id"=>"11"}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (2.0ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 11]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 10ms (ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 2.3ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/3" for ::1 at 2024-12-03 19:29:34 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"3"}
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (0.8ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 3ms (ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/1" for ::1 at 2024-12-03 19:29:36 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"1"}
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (3.7ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 13ms (ActiveRecord: 4.9ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started DELETE "/locker_controllers/1/lockers/12" for ::1 at 2024-12-03 19:29:39 -0300
+Processing by LockersController#destroy as HTML
+  Parameters: {"locker_controller_id"=>"1", "id"=>"12"}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:101:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mLocker Destroy (2.0ms)[0m  [1m[31mDELETE FROM "lockers" WHERE "lockers"."id" = $1[0m  [["id", 12]]
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:42:in `destroy'
+Completed 204 No Content in 7ms (ActiveRecord: 2.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:29:42 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:29:42 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:29:43 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.6ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 3.9ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:29:44 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.1ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:30:04 -0300
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:30:04 -0300
+Started GET "/locker_controllers" for ::1 at 2024-12-03 19:30:04 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockersController#index as HTML
+  [1m[36mLockerController Load (6.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  Parameters: {"locker_controller_id"=>"1"}
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 7.0ms | ActiveRecord: 6.9ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+  [1m[36mLockerController Load (0.8ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLockerController Load (0.5ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 36ms (Views: 1.5ms | ActiveRecord: 11.7ms (2 queries, 0 cached) | GC: 2.2ms)
+
+
+Completed 200 OK in 29ms (Views: 3.0ms | ActiveRecord: 11.1ms (2 queries, 0 cached) | GC: 1.5ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:30:18 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Locker 1", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Locker 1", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (1.1ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (4.5ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Locker 1"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "stop-left-zero-five"], ["abierto", false], ["created_at", "2024-12-03 22:30:18.162455"], ["updated_at", "2024-12-03 22:30:18.162455"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 22ms (Views: 0.3ms | ActiveRecord: 7.3ms (4 queries, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:30:21 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:30:23 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:30:33 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Locker 1", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"2", "locker"=>{"nombre"=>"Locker 1", "locker_controller_id"=>"2", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.2ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (0.6ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Locker 1"], ["locker_controller_id", 2], ["owner_email", "[FILTERED]"], ["key_sequence", "stop-five-two-left"], ["abierto", false], ["created_at", "2024-12-03 22:30:33.821767"], ["updated_at", "2024-12-03 22:30:33.821767"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 14ms (Views: 0.2ms | ActiveRecord: 2.3ms (4 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/locker_controllers/2/lockers" for ::1 at 2024-12-03 19:30:37 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.2ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 1.6ms)
+
+
+Started POST "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:30:43 -0300
+Processing by LockersController#create as HTML
+  Parameters: {"nombre"=>"Locker 2", "owner_email"=>"[FILTERED]", "locker_controller_id"=>"1", "locker"=>{"nombre"=>"Locker 2", "locker_controller_id"=>"1", "owner_email"=>"[FILTERED]"}}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mGesture Pluck (0.3ms)[0m  [1m[34mSELECT "gestures"."gesture_type" FROM "gestures"[0m
+  ↳ app/controllers/lockers_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mLocker Create (0.4ms)[0m  [1m[32mINSERT INTO "lockers" ("nombre", "locker_controller_id", "owner_email", "key_sequence", "abierto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["nombre", "Locker 2"], ["locker_controller_id", 1], ["owner_email", "[FILTERED]"], ["key_sequence", "two-five-up-zero"], ["abierto", false], ["created_at", "2024-12-03 22:30:43.061393"], ["updated_at", "2024-12-03 22:30:43.061393"]]
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:20:in `create'
+Completed 201 Created in 12ms (Views: 0.3ms | ActiveRecord: 1.4ms (4 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/locker_controllers/1/lockers" for ::1 at 2024-12-03 19:30:46 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"1"}
+  [1m[36mLockerController Load (0.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:105:in `set_locker_controller'
+  [1m[36mLocker Load (0.3ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 1]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+

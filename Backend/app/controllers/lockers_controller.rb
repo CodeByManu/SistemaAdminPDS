@@ -1,6 +1,6 @@
 class LockersController < ApplicationController
   before_action :set_locker, only: [:show, :update, :destroy]
-  before_action :set_locker_controller, only: [:index]
+  before_action :set_locker_controller, only: [:index, :create]
 
   after_action :publish_mqtt_message_mailer, only: :send_code
 

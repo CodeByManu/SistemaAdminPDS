@@ -31,11 +31,12 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
       const newLockerData = {
         nombre: lockerData.nombre,
         owner_email: lockerData.owner_email,
+        locker_controller_id: controllerId,
       };
 
       // Utilizar el ID del controlador especificado
       const response = await axios.post(
-        `http://localhost:3000/locker_controllers/${lockerData.locker_controller_id}/lockers`,
+        `http://localhost:3000/locker_controllers/${controllerId}/lockers`,
         newLockerData
       );
 

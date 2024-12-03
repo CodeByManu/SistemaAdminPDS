@@ -16,7 +16,11 @@ const CreateControllerModal = ({ open, onClose, onControllerCreated }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post('http://localhost:3000/locker_controllers', {
-        locker_controller: { nombre, estado },
+        locker_controller: { 
+          nombre: nombre, 
+          estado: estado,
+          user_id: 1,
+        },
       });
       onControllerCreated(response.data);
       onClose();
