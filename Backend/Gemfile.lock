@@ -128,6 +128,7 @@ GEM
     marcel (1.0.4)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    mqtt (0.6.0)
     msgpack (1.7.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -298,6 +299,7 @@ DEPENDENCIES
   brakeman
   debug
   devise
+  mqtt
   omniauth-google-oauth2
   pg (~> 1.1)
   puma (>= 5.0)

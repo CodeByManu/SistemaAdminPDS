@@ -19,7 +19,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LockerDetailsModal from './lockerdetail';
 import CreateLockerModal from './createlocker';
 
-const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModalOpen }) => {
+  const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModalOpen }) => {
   const [open, setOpen] = useState(false);
   const [lockers, setLockers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +33,32 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModal
       alert('Código de apertura enviado!');
     } catch (error) {
       console.error('Error enviando el email:', error);
-      alert('Hubo un error al eliminar el casillero');
+      alert('Hubo un error al enviar el código');
+    }
+  };
+
+  const handleToggleLockerState = async (lockerControllerId, locker, index) => {
+    try {
+      const newState = !locker.abierto;
+      const payload = {
+        abierto: newState,
+        servo: index,
+      }
+      const response = await axios.put(
+        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
+        payload
+      );
+      console.log('Estado del casillero actualizado:', response.data);
+      // Actualizar el estado local
+      setLockers((prevLockers) =>
+        prevLockers.map((l) =>
+          l.id === locker.id ? { ...l, abierto: newState } : l
+        )
+      );
+      // alert(`El casillero fue ${newState ? 'abierto' : 'cerrado'} exitosamente!`);
+    } catch (error) {
+      console.error('Error actualizando el estado del casillero:', error);
+      alert('Hubo un error al cambiar el estado del casillero.');
     }
   };
 
@@ -106,13 +131,25 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModal
                             <Button 
                               variant="contained" 
                               size="small" 
-                              sx={{ bgcolor: '#FFE0B2', color: 'black' }}
+                              sx={{ bgcolor: '#FFE0B2', color: 'black', mr: 1 }}
                               onClick={() => {
                                 setSelectedLocker(locker);
                                 setDetailsModalOpen(true);
                               }}
                             >
                               VER DETALLES
+                            </Button>
+                            <Button
+                              variant="contained"
+                              size="small"
+                              sx={{
+                                bgcolor: locker.abierto ? '#81C784' : '#E57373', // Verde si está abierto, rojo si está cerrado
+                                color: 'black',
+                                width: '72px',
+                              }}
+                              onClick={() => handleToggleLockerState(controller.id, locker, lockers.indexOf(locker) + 1)}
+                            >
+                              {locker.abierto ? 'Cerrar' : 'Abrir'}
                             </Button>
                           </TableCell>
                         </TableRow>
@@ -143,7 +180,7 @@ const ControllerRow = ({ controller, setCreateLockerModalOpen, createLockerModal
       <CreateLockerModal
         open={createLockerModalOpen}
         onClose={() => setCreateLockerModalOpen(false)}
-        controllerId={controller.id}  // Passing the controller ID to the modal
+        controllerId={controller.id}
       />
     </>
   );

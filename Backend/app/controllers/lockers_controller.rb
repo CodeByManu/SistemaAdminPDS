@@ -2,6 +2,8 @@ class LockersController < ApplicationController
   before_action :set_locker, only: [:show, :update, :destroy]
   before_action :set_locker_controller, only: [:index]
 
+  after_action :publish_mqtt_message_mailer, only: :send_code
+
   def index
     @lockers = @locker_controller.lockers
     render json: @lockers
@@ -23,7 +25,13 @@ class LockersController < ApplicationController
   end  
 
   def update
-    if @locker.update(locker_params)
+
+      previous_state = @locker.abierto
+
+    if @locker.update(abierto: params[:abierto])
+      if previous_state != @locker.abierto
+        publish_mqtt_message_state_change(params[:servo], @locker.abierto)
+      end
       render json: @locker
     else
       render json: @locker.errors, status: :unprocessable_entity
@@ -59,9 +67,35 @@ class LockersController < ApplicationController
     # Send the email
     LockerMailer.send_code(@locker).deliver_now
     render json: { message: 'Email sent successfully with new code' }, status: :ok
-  end  
+  end
 
   private
+
+  def publish_mqtt_message_state_change(servo, state)
+    topic = 'ChangePassword'
+    message = {
+      estado: state,
+      servo: servo,
+  }.to_json
+    MQTT_CLIENT.publish(topic, message)
+    Rails.logger.info "Publicado mensaje MQTT: #{topic} -> #{message}"
+  rescue StandardError => e
+    Rails.logger.error "Error al publicar mensaje MQTT: #{e.message}"
+  end
+
+  def publish_mqtt_message_mailer
+      topic = 'ChangePassword'
+      message = {
+          type: 'OpenLocker',
+          locker_id: @locker.id,
+          owner_email: @locker.owner_email,
+          key_sequence: @locker.key_sequence,
+          timestamp: Time.current
+      }.to_json
+      MQTT_CLIENT.publish(topic, message)
+  rescue StandardError => e
+      Rails.logger.error "Error al publicar mensaje MQTT: #{e.message}"
+  end
 
   def set_locker
     @locker = Locker.find(params[:id])
