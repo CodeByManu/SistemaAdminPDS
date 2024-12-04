@@ -1,5 +1,5 @@
 class LockersController < ApplicationController
-  before_action :set_locker, only: [:show, :update, :destroy]
+  before_action :set_locker, only: [:show, :update, :destroy, :update_email]
   before_action :set_locker_controller, only: [:index, :create]
 
   after_action :publish_mqtt_message_mailer, only: :send_code
@@ -26,11 +26,12 @@ class LockersController < ApplicationController
 
   def update
 
-      previous_state = @locker.abierto
+    previous_state = @locker.abierto
 
     if @locker.update(abierto: params[:abierto])
       if previous_state != @locker.abierto
         publish_mqtt_message_state_change(params[:servo], @locker.abierto)
+        LockerMailer.state_change_notification(@locker).deliver_now
       end
       render json: @locker
     else
@@ -43,6 +44,17 @@ class LockersController < ApplicationController
     head :no_content
   end
 
+  def update_email
+    if @locker.update(owner_email: params[:email])
+      # Enviar correo al nuevo propietario
+      LockerMailer.email_update_notification(@locker).deliver_now
+  
+      render json: { message: 'Email updated successfully', locker: @locker }, status: :ok
+    else
+      render json: { error: 'Failed to update email' }, status: :unprocessable_entity
+    end
+  end
+  
   # def send_code
   #   locker = Locker.find(params[:id])
   #   LockerMailer.send_code(locker).deliver_now
@@ -67,6 +79,11 @@ class LockersController < ApplicationController
     # Send the email
     LockerMailer.send_code(@locker).deliver_now
     render json: { message: 'Email sent successfully with new code' }, status: :ok
+  end
+
+  def active_count
+    total_lockers_count = Locker.count
+    render json: { count: total_lockers_count }
   end
 
   private

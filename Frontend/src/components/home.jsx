@@ -1,123 +1,173 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-
-const weekDays = [
-  { day: 'LUNES', value: 1 },
-  { day: 'MARTES', value: 6 },
-  { day: 'MIÉRCOLES', value: 3 },
-  { day: 'JUEVES', value: 1 },
-  { day: 'VIERNES', value: 3 },
-  { day: 'SÁBADO', value: 4 },
-  { day: 'DOMINGO', value: 3 }
-];
+import React, { useEffect, useState } from 'react';
+import { 
+  Box, 
+  Card, 
+  CardHeader, 
+  CardContent, 
+  Typography, 
+  Grid, 
+  Chip,
+  CircularProgress,
+  Container
+} from '@mui/material';
+import axios from 'axios';
 
 const LockerDashboard = () => {
-  return (
-    <Box sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
-      <Typography variant="h5" component="h1" sx={{ fontWeight: 'bold', mb: 3 }}>
-        BIENVENIDO (USUARIO)
-      </Typography>
-      
-      {/* Tabla Semanal */}
-      <Paper 
-        elevation={0}
-        sx={{ 
-          bgcolor: '#FFF8E1',
-          p: 2,
-          mb: 3,
-          borderRadius: 2
-        }}
+  const [lockerControllers, setLockerControllers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/locker_controllers')
+      .then(async (response) => {
+        const controllers = response.data;
+        const controllersWithLockers = await Promise.all(controllers.map(async (controller) => {
+          try {
+            const lockersResponse = await axios.get(`http://localhost:3000/locker_controllers/${controller.id}/lockers`);
+            return { ...controller, lockers: lockersResponse.data };
+          } catch (error) {
+            console.error('Error fetching lockers for controller', controller.id);
+            return { ...controller, lockers: [] };
+          }
+        }));
+        setLockerControllers(controllersWithLockers);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching locker controllers:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <Box 
+        display="flex" 
+        justifyContent="center" 
+        alignItems="center" 
+        height="100vh"
       >
-        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-          CASILLEROS ABIERTOS EN LA ÚLTIMA SEMANA
+        <CircularProgress color="primary" size={60} />
+      </Box>
+    );
+  }
+
+  return (
+    <Container maxWidth={false} sx={{ p: 3 }}>
+      <Box sx={{ 
+        py: 4, 
+        background: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
+        borderRadius: 2,
+        mb: 3,
+        textAlign: 'center'
+      }}>
+        <Typography 
+          variant="h4" 
+          component="h1" 
+          sx={{ 
+            fontWeight: 'bold', 
+            color: 'white',
+            textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+          }}
+        >
+          DASHBOARD DE USUARIO
         </Typography>
-        <Grid container spacing={2}>
-          {weekDays.map(({ day, value }) => (
-            <Grid item xs={12/7} key={day}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '0.875rem' }}>
-                  {day}
-                </Typography>
-                <Typography sx={{ mt: 1 }}>
-                  {value}
-                </Typography>
-              </Box>
+      </Box>
+
+      {lockerControllers.length > 0 ? (
+        <Grid container spacing={4}>
+          {lockerControllers.map((controller) => (
+            <Grid item xs={12} key={controller.id}>
+              <Card 
+                elevation={3} 
+                sx={{ 
+                  height: '100%', 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  transition: 'transform 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.02)'
+                  }
+                }}
+              >
+                <CardHeader
+                  title={`Controlador: ${controller.nombre}`}
+                  titleTypographyProps={{
+                    variant: 'h6',
+                    sx: { 
+                      fontWeight: 'bold', 
+                      color: '#333' 
+                    },
+                  }}
+                  sx={{ 
+                    bgcolor: '#f0f0f0',
+                    borderBottom: '1px solid #e0e0e0'
+                  }}
+                />
+                <CardContent sx={{ 
+                  flexGrow: 1, 
+                  overflowY: 'auto',
+                  maxHeight: 300
+                }}>
+                  {controller.lockers.length > 0 ? (
+                    <Grid container spacing={2}>
+                      {controller.lockers.map((locker) => (
+                        <Grid item xs={12} sm={6} md={4} key={locker.id}>
+                          <Box 
+                            sx={{ 
+                              display: 'flex', 
+                              justifyContent: 'space-between', 
+                              alignItems: 'center',
+                              bgcolor: locker.abierto ? '#e8f5e9' : '#ffebee',
+                              p: 2,
+                              borderRadius: 2,
+                              mb: 1
+                            }}
+                          >
+                            <Typography 
+                              variant="body1" 
+                              sx={{ fontWeight: 'bold', mr: 2 }}
+                            >
+                              {locker.nombre}
+                            </Typography>
+                            <Chip 
+                              label={locker.abierto ? 'Abierto' : 'Cerrado'}
+                              color={locker.abierto ? 'success' : 'error'}
+                              size="small"
+                            />
+                          </Box>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  ) : (
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary" 
+                      sx={{ textAlign: 'center', py: 2 }}
+                    >
+                      No hay casilleros disponibles
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
             </Grid>
           ))}
         </Grid>
-      </Paper>
-
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Card 
-            elevation={1}
-            sx={{ 
-              bgcolor: '#FFF8E1',
-              height: '100%'
-            }}
+      ) : (
+        <Box 
+          display="flex" 
+          justifyContent="center" 
+          alignItems="center" 
+          height="50vh"
+        >
+          <Typography 
+            variant="h6" 
+            color="text.secondary"
           >
-            <CardHeader 
-              title="ESTADO DE LOS CASILLEROS"
-              titleTypographyProps={{ 
-                variant: 'h6',
-                sx: { fontWeight: 'bold', fontSize: '1rem' }
-              }}
-            />
-            <CardContent sx={{ height: 200 }}>
-              {/* Contenido */}
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Card 
-            elevation={1}
-            sx={{ 
-              bgcolor: '#FFF8E1',
-              height: '100%'
-            }}
-          >
-            <CardHeader 
-              title="CASILLEROS CON MAYOR TIEMPO DE APERTURA"
-              titleTypographyProps={{ 
-                variant: 'h6',
-                sx: { fontWeight: 'bold', fontSize: '1rem' }
-              }}
-            />
-            <CardContent sx={{ height: 200 }}>
-              {/* Contenido */}
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Card 
-            elevation={1}
-            sx={{ 
-              bgcolor: '#FFF8E1',
-              height: '100%'
-            }}
-          >
-            <CardHeader 
-              title="CASILLEROS MAS USADOS (ULTIMOS 7 DIAS)"
-              titleTypographyProps={{ 
-                variant: 'h6',
-                sx: { fontWeight: 'bold', fontSize: '1rem' }
-              }}
-            />
-            <CardContent sx={{ height: 200 }}>
-              {/* Contenido */}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
+            No hay controladores disponibles
+          </Typography>
+        </Box>
+      )}
+    </Container>
   );
 };
 
