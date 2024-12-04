@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'Casillero'];
+const pages = ['Home', 'Casillero', 'Modelos'];
 const settings = ['Profile', 'Account', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -24,6 +24,7 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -44,14 +45,14 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="span"  // Changed from "a" to "span" to make it non-clickable
+            component="span"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'black',  // Changed to black
+              color: 'black',
               textDecoration: 'none',
             }}
           >
@@ -88,7 +89,18 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: 'center' }}>
-                    <Link to={page === 'Casillero' ? '/casillero' : '/'}>{page}</Link>
+                    <Link
+                      to={
+                        page === 'Casillero'
+                          ? '/casillero'
+                          : page === 'Modelos'
+                          ? '/model'
+                          : '/'
+                      }
+                      style={{ color: 'inherit', textDecoration: 'none' }}
+                    >
+                      {page}
+                    </Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -99,7 +111,7 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="span"  // Changed from "a" to "span" to make it non-clickable
+            component="span"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -107,7 +119,7 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'black',  // Changed to black
+              color: 'black',
               textDecoration: 'none',
             }}
           >
@@ -129,7 +141,13 @@ function ResponsiveAppBar() {
                 }}
               >
                 <Link
-                  to={page === 'Casillero' ? '/casillero' : '/'}
+                  to={
+                    page === 'Casillero'
+                      ? '/casillero'
+                      : page === 'Modelos'
+                      ? '/model'
+                      : '/'
+                  }
                   style={{ color: 'inherit', textDecoration: 'none' }}
                 >
                   {page}

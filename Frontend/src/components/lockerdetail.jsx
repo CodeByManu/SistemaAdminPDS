@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -7,6 +7,7 @@ import {
   Typography,
   Box,
   Button,
+  TextField,
 } from '@mui/material';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,26 +15,42 @@ import CloseIcon from '@mui/icons-material/Close';
 const LockerDetailsModal = ({ open, onClose, locker }) => {
   if (!locker) return null;
 
-const handleSendCode = async () => {
-  try {
+  const [editableEmail, setEditableEmail] = useState(locker.owner_email);
+
+  const handleSendCode = async () => {
+    try {
       await axios.post(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/send_code`);
       alert('Código de apertura enviado!');
-  } catch (error) {
+    } catch (error) {
       console.error('Error sending email:', error);
       alert('Hubo un error al enviar el código.');
-  }
-};
+    }
+  };
 
-const deleteLocker = async () => {
-  try {
-    await axios.delete(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}`);
-    alert('El casillero ha sido eliminado correctamente');
-    onClose();
-  } catch (error) {
-    console.error('Error deleting locker:', error);
-    alert('Hubo un error al eliminar el casillero');
-  }
-};
+  const handleEmailChange = (event) => {
+    setEditableEmail(event.target.value);
+  };
+
+  const handleUpdateEmail = async () => {
+    try {
+      await axios.put(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/update_email`, { email: editableEmail });
+      alert('Email actualizado correctamente');
+    } catch (error) {
+      console.error('Error updating email:', error);
+      alert('Hubo un error al actualizar el email');
+    }
+  };
+
+  const deleteLocker = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}`);
+      alert('El casillero ha sido eliminado correctamente');
+      onClose();
+    } catch (error) {
+      console.error('Error deleting locker:', error);
+      alert('Hubo un error al eliminar el casillero');
+    }
+  };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -57,7 +74,24 @@ const deleteLocker = async () => {
 
           <Box sx={{ mb: 3 }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>DUEÑO</Typography>
-            <Typography variant="body2">{locker.owner_email}</Typography>
+            <TextField
+              fullWidth
+              variant="outlined"
+              value={editableEmail}
+              onChange={handleEmailChange}
+              sx={{ mb: 2 }}
+            />
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: '#FFE0B2',
+                color: 'black',
+                '&:hover': { bgcolor: '#FFCC80' },
+              }}
+              onClick={handleUpdateEmail}
+            >
+              ACTUALIZAR EMAIL
+            </Button>
           </Box>
 
           <Box sx={{ mb: 3 }}>
