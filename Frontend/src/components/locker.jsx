@@ -19,6 +19,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LockerDetailsModal from './lockerdetail';
 import CreateLockerModal from './createlocker'; 
 import CreateControllerModal from './createcontroller'; // Nuevo modal
+import API_URL from './env';
 
 const ControllerRow = ({ controller, controller_id }) => {
   const [open, setOpen] = useState(false);
@@ -32,7 +33,12 @@ const ControllerRow = ({ controller, controller_id }) => {
   const handleRequestCode = async (lockerControllerId, lockerId) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`
+        `${API_URL}/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        }
       );
       alert('Código de apertura enviado correctamente!');
     } catch (error) {
@@ -44,8 +50,13 @@ const ControllerRow = ({ controller, controller_id }) => {
     try {
       const newState = !locker.abierto;
       await axios.put(
-        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
-        { abierto: newState, servo: index }
+        `${API_URL}/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
+        { abierto: newState, servo: index },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        }
       );
       setLockers((prev) =>
         prev.map((l) =>
@@ -62,7 +73,12 @@ const ControllerRow = ({ controller, controller_id }) => {
       if (open) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/locker_controllers/${controller.id}/lockers`
+            `${API_URL}/locker_controllers/${controller.id}/lockers`,
+            {
+              headers: {
+                "ngrok-skip-browser-warning": true,
+              }
+            }
           );
           setLockers(response.data);
         } catch {
@@ -214,7 +230,12 @@ const LockerTable = () => {
   useEffect(() => {
     const fetchLockerControllers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/locker_controllers');
+        const response = await axios.get(`${API_URL}/locker_controllers`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": true,
+            }
+          });
         setLockerControllers(response.data);
         setLoading(false);
       } catch (error) {

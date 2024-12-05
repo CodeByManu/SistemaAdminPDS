@@ -24,6 +24,7 @@ import {
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import API_URL from './env';
 
 const GestureFileForm = () => {
   const [files, setFiles] = useState([]);
@@ -44,7 +45,12 @@ const GestureFileForm = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/gesture_files');
+        const response = await axios.get(`${API_URL}/gesture_files`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": true,
+            }
+          });
         setFiles(response.data);
       } catch (error) {
         console.error('Error al cargar los archivos de gestos:', error);
@@ -79,9 +85,10 @@ const GestureFileForm = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:3000/gesture_files', formData, {
+      const response = await axios.post(`${API_URL}/gesture_files`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          "ngrok-skip-browser-warning": true,
         },
       });
       alert('Archivo y gestos subidos correctamente');
@@ -109,7 +116,7 @@ const GestureFileForm = () => {
     });
 
     try {
-      const response = await axios.put(`http://localhost:3000/gesture_files/${editFile.id}`, formData, {
+      const response = await axios.put(`${API_URL}/gesture_files/${editFile.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -129,7 +136,12 @@ const GestureFileForm = () => {
     if (!window.confirm('¿Estás seguro de que deseas eliminar este archivo?')) return;
 
     try {
-      await axios.delete(`http://localhost:3000/gesture_files/${id}`);
+      await axios.delete(`http://localhost:3000/gesture_files/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        });
       setFiles((prevFiles) => prevFiles.filter((f) => f.id !== id));
       alert('Archivo eliminado correctamente');
     } catch (error) {

@@ -11,6 +11,7 @@ import {
   Container
 } from '@mui/material';
 import axios from 'axios';
+import API_URL from './env';
 
 const weekDays = [
   { day: 'LUNES', value: 1, color: '#FFF8E1' },
@@ -27,12 +28,24 @@ const LockerDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/locker_controllers')
+    axios.get(`${API_URL}/locker_controllers`,
+      {
+        headers: {
+          "ngrok-skip-browser-warning": true,
+        }
+      }
+    )
       .then(async (response) => {
         const controllers = response.data;
         const controllersWithLockers = await Promise.all(controllers.map(async (controller) => {
           try {
-            const lockersResponse = await axios.get(`http://localhost:3000/locker_controllers/${controller.id}/lockers`);
+            const lockersResponse = await axios.get(`${API_URL}/locker_controllers/${controller.id}/lockers`,
+              {
+                headers: {
+                  "ngrok-skip-browser-warning": true,
+                }
+              }
+            );
             return { ...controller, lockers: lockersResponse.data };
           } catch (error) {
             console.error('Error fetching lockers for controller', controller.id);

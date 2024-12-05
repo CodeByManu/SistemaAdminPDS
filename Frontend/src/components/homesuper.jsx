@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent, Box, Typography, Grid } from '@mui/mater
 import GroupIcon from '@mui/icons-material/Group';
 import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import API_URL from './env';
 
 const weekDays = [
   { day: 'LUNES', value: 1, color: '#FFF8E1' },
@@ -82,7 +83,12 @@ const LockerDashboardSuper = () => {
   const [errorLockers, setErrorLockers] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/users/count')
+    axios.get(`${API_URL}/users/count`,
+      {
+        headers: {
+          "ngrok-skip-browser-warning": true,
+        }
+      })
       .then((response) => {
         setUserCount(response.data.count);
         setLoading(false);
@@ -93,7 +99,12 @@ const LockerDashboardSuper = () => {
         setLoading(false);
       });
 
-    axios.get('http://localhost:3000/locker_controllers/count')
+    axios.get(`${API_URL}/locker_controllers/count`,
+      {
+        headers: {
+          "ngrok-skip-browser-warning": true,
+        }
+      })
       .then((response) => {
         setControllerCount(response.data.count);
         setLoadingControllers(false);
@@ -104,7 +115,12 @@ const LockerDashboardSuper = () => {
         setLoadingControllers(false);
       });
 
-    axios.get(`http://localhost:3000/lockers/active_count`)
+    axios.get(`${API_URL}/lockers/active_count`,
+      {
+        headers: {
+          "ngrok-skip-browser-warning": true,
+        }
+      })
       .then((response) => {
         setActiveLockerCount(response.data.count);
         setLoadingLockers(false);

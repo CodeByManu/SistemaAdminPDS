@@ -8,6 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import axios from 'axios';
+import API_URL from './env';
 
 const CreateControllerModal = ({ open, onClose, onControllerCreated }) => {
   const [nombre, setNombre] = useState('');
@@ -15,13 +16,21 @@ const CreateControllerModal = ({ open, onClose, onControllerCreated }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/locker_controllers', {
-        locker_controller: { 
-          nombre: nombre, 
-          estado: estado,
-          user_id: 1,
+      const response = await axios.post(
+        `${API_URL}/locker_controllers`, 
+        {
+          locker_controller: { 
+            nombre: nombre, 
+            estado: estado,
+            user_id: 1,
+          },
         },
-      });
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        }
+      );
       onControllerCreated(response.data);
       onClose();
     } catch (error) {
