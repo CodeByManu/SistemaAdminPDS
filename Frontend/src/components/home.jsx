@@ -12,6 +12,16 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 
+const weekDays = [
+  { day: 'LUNES', value: 1, color: '#FFF8E1' },
+  { day: 'MARTES', value: 6, color: '#FFF8E1' },
+  { day: 'MIÉRCOLES', value: 3, color: '#FFF8E1' },
+  { day: 'JUEVES', value: 1, color: '#FFF8E1' },
+  { day: 'VIERNES', value: 3, color: '#FFF8E1' },
+  { day: 'SÁBADO', value: 4, color: '#FFF8E1' },
+  { day: 'DOMINGO', value: 3, color: '#FFF8E1' },
+];
+
 const LockerDashboard = () => {
   const [lockerControllers, setLockerControllers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -72,6 +82,64 @@ const LockerDashboard = () => {
           DASHBOARD DE USUARIO
         </Typography>
       </Box>
+
+      <Box 
+        sx={{ 
+            py: 2, 
+            bgcolor: '#FF6F61', // Color sólido para el fondo del cuadro
+            borderRadius: 1, // Borde redondeado más pequeño
+            mb: 3, 
+            textAlign: 'center',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)', // Sombra más sutil
+            border: '2px solid #FF6F61', // Borde sólido
+            padding: '10px', // Espacio dentro del cuadro más pequeño
+        }}
+        >
+        <Typography 
+            variant="h4" 
+            component="h1" 
+            sx={{ 
+            fontWeight: 'bold', 
+            color: 'white', 
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)' 
+            }}
+        >
+            CASILLEROS ABIERTOS EN LA ÚLTIMA SEMANA
+        </Typography>
+        </Box>
+
+      <Grid container spacing={2} sx={{ mb: 3 }}>
+        {weekDays.map(({ day, value, color }) => (
+          <Grid item xs={12} sm={6} md={1.71} key={day}>
+            <Box sx={{ 
+              textAlign: 'center', 
+              bgcolor: color, 
+              p: 2, 
+              borderRadius: 2,
+              transition: 'transform 0.3s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+              }
+            }}>
+              <Typography sx={{ 
+                fontWeight: 'bold', 
+                fontSize: '0.875rem', 
+                color: '#333' 
+              }}>
+                {day}
+              </Typography>
+              <Typography sx={{ 
+                mt: 1, 
+                fontWeight: 'bold', 
+                color: '#2C3E50' 
+              }}>
+                {value}
+              </Typography>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
 
       {lockerControllers.length > 0 ? (
         <Grid container spacing={4}>

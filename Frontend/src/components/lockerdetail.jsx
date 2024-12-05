@@ -67,9 +67,6 @@ const LockerDetailsModal = ({ open, onClose, locker }) => {
             <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
               {locker.nombre}
             </Typography>
-            <Box sx={{ bgcolor: '#C8E6C9', px: 2, py: 0.5, borderRadius: '16px', display: 'inline-block' }}>
-              <Typography variant="body2">CONECTADO</Typography>
-            </Box>
           </Box>
 
           <Box sx={{ mb: 3 }}>
@@ -118,16 +115,6 @@ const LockerDetailsModal = ({ open, onClose, locker }) => {
           <Box sx={{ mb: 3 }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>CONTROLADOR</Typography>
             <Typography variant="body2">{locker.controller_name}</Typography>
-          </Box>
-
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>ÚLTIMA APERTURA</Typography>
-            <Typography variant="body2">MM/DD/YYYY - 1:09 PM</Typography>
-          </Box>
-
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>CANTIDAD DE APERTURAS (ÚLTIMOS 7 DÍAS)</Typography>
-            <Typography variant="body2">13</Typography>
           </Box>
 
           <Button
