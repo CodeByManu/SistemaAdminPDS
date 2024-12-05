@@ -34,6 +34,7 @@ const ControllerRow = ({ controller, controller_id }) => {
     try {
       const response = await axios.post(
         `${API_URL}/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`,
+        { servo: index, controller_id: controller_id },
         {
           headers: {
             "ngrok-skip-browser-warning": true,
@@ -51,7 +52,7 @@ const ControllerRow = ({ controller, controller_id }) => {
       const newState = !locker.abierto;
       await axios.put(
         `${API_URL}/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
-        { abierto: newState, servo: index },
+        { abierto: newState, servo: index, controller_id: controller_id },    
         {
           headers: {
             "ngrok-skip-browser-warning": true,

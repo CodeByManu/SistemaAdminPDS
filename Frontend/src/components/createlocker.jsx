@@ -38,12 +38,12 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
       // Utilizar el ID del controlador especificado
       const response = await axios.post(
         `${API_URL}/locker_controllers/${controllerId}/lockers`,
+        newLockerData,
         {
           headers: {
             "ngrok-skip-browser-warning": true,
           }
         },
-        newLockerData
       );
 
       alert('Casillero creado exitosamente!');
