@@ -29,10 +29,11 @@ const ControllerRow = ({ controller, controller_id }) => {
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [createLockerModalOpen, setCreateLockerModalOpen] = useState(false);
 
-  const handleRequestCode = async (lockerControllerId, lockerId) => {
+  const handleRequestCode = async (lockerControllerId, lockerId, index) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`
+        `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`,
+        { servo: index, controller_id: controller_id }
       );
       alert('Código de apertura enviado correctamente!');
     } catch (error) {
@@ -45,7 +46,7 @@ const ControllerRow = ({ controller, controller_id }) => {
       const newState = !locker.abierto;
       await axios.put(
         `http://localhost:3000/locker_controllers/${lockerControllerId}/lockers/${locker.id}`,
-        { abierto: newState, servo: index }
+        { abierto: newState, servo: index, controller_id: controller_id }
       );
       setLockers((prev) =>
         prev.map((l) =>
@@ -125,7 +126,7 @@ const ControllerRow = ({ controller, controller_id }) => {
                                 size="small"
                                 sx={{ mr: 1, bgcolor: '#FFCDD2', color: 'black' }}
                                 onClick={() =>
-                                  handleRequestCode(controller.id, locker.id)
+                                  handleRequestCode(controller.id, locker.id, index + 1)
                                 }
                               >
                                 PEDIR CLAVE
@@ -236,13 +237,13 @@ const LockerTable = () => {
       <TableContainer component={Paper} elevation={1}>
         <Table>
           <TableBody>
-            {lockerControllers.map((controller) => (
+            {lockerControllers.map((controller, index) => (
               <ControllerRow
                 key={controller.id}
                 controller={controller}
                 setCreateLockerModalOpen={setCreateLockerModalOpen}
                 createLockerModalOpen={createLockerModalOpen}
-                controller_id={controller.id}
+                controller_id={index + 1}
               />
             ))}
           </TableBody>

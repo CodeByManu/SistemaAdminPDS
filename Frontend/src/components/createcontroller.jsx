@@ -19,7 +19,6 @@ const CreateControllerModal = ({ open, onClose, onControllerCreated }) => {
         locker_controller: { 
           nombre: nombre, 
           estado: estado,
-          user_id: 1,
         },
       });
       onControllerCreated(response.data);

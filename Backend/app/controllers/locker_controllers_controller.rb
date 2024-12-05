@@ -38,7 +38,7 @@ class LockerControllersController < ApplicationController
   private
 
   def locker_controller_params
-    params.require(:locker_controller).permit(:nombre, :estado, :user_id)
+    params.require(:locker_controller).permit(:nombre, :estado)
   end
 
 end

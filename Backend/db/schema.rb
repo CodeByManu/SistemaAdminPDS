@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_13_174254) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_04_212021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,12 +30,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_174254) do
     t.datetime "ultima_conexion"
     t.integer "casilleros_activos", default: 0, null: false
     t.boolean "alert_sent", default: false, null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["estado"], name: "index_locker_controllers_on_estado"
     t.index ["nombre"], name: "index_locker_controllers_on_nombre", unique: true
-    t.index ["user_id"], name: "index_locker_controllers_on_user_id"
   end
 
   create_table "locker_events", force: :cascade do |t|
@@ -57,6 +55,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_174254) do
     t.boolean "abierto", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "intPassword"
     t.index ["locker_controller_id", "nombre"], name: "index_lockers_on_controller_and_nombre", unique: true
     t.index ["locker_controller_id"], name: "index_lockers_on_locker_controller_id"
     t.index ["owner_email"], name: "index_lockers_on_owner_email"
@@ -91,7 +90,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_174254) do
   end
 
   add_foreign_key "gestures", "symbol_models"
-  add_foreign_key "locker_controllers", "users"
   add_foreign_key "locker_events", "lockers"
   add_foreign_key "lockers", "locker_controllers"
   add_foreign_key "users", "symbol_models"
