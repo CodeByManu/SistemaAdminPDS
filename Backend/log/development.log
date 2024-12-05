@@ -31178,3 +31178,552 @@ b -->
 Completed 200 OK in 3035ms (Views: 9.2ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.7ms)
 
 
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:22:22 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (9.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 35ms (Views: 2.8ms | ActiveRecord: 20.8ms (1 query, 0 cached) | GC: 1.7ms)
+
+
+Started GET "//locker_controllers/2/lockers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:22:24 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+  [1m[36mLockerController Load (0.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:125:in `set_locker_controller'
+  [1m[36mLocker Load (1.0ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 46ms (Views: 25.7ms | ActiveRecord: 5.7ms (2 queries, 0 cached) | GC: 15.9ms)
+
+
+Started PUT "//locker_controllers/2/lockers/4" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:22:25 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "locker_controller_id"=>"2", "id"=>"4", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (6.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-05 07:22:25.876599"], ["id", 4]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1,"controller_id":null}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 0.7ms | GC: 0.1ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.1ms | GC: 0.1ms)
+LockerMailer#state_change_notification: processed outbound mail in 10.4ms
+Failed delivery of mail 675154b1e0b38_ef825eb02031@MacBook-Pro-de-Administrador.local.mail error_class=Net::ReadTimeout error_message="Net::ReadTimeout with #<TCPSocket:(closed)>"
+Date: Thu, 05 Dec 2024 04:22:25 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <675154b1e0b38_ef825eb02031@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_abierto?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        abierto
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 500 Internal Server Error in 5267ms (ActiveRecord: 8.8ms (2 queries, 0 cached) | GC: 13.1ms)
+
+
+  
+Net::ReadTimeout (Net::ReadTimeout with #<TCPSocket:(closed)>):
+  
+app/controllers/lockers_controller.rb:34:in `update'
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:23:13 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (0.9ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:09 -0300
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (13.7ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 5.7ms | ActiveRecord: 13.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:27 -0300
+Started GET "//locker_controllers/2/lockers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:27 -0300
+Processing by LockersController#index as HTML
+  Parameters: {"locker_controller_id"=>"2"}
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (3.2ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers" WHERE "locker_controllers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:125:in `set_locker_controller'
+  [1m[36mLocker Load (1.1ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."locker_controller_id" = $1[0m  [["locker_controller_id", 2]]
+  ↳ app/controllers/lockers_controller.rb:9:in `index'
+Completed 200 OK in 21ms (Views: 2.8ms | ActiveRecord: 4.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mLockerController Load (27.6ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: -4.9ms | ActiveRecord: 37.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "//locker_controllers/2/lockers/4" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:28 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"4", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (1.6ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (4.2ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-05 07:24:28.105478"], ["id", 4]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1,"controller_id":2}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.5ms | GC: 0.0ms)
+LockerMailer#state_change_notification: processed outbound mail in 5.3ms
+Delivered mail 6751552c1ef0d_ef822f3020412@MacBook-Pro-de-Administrador.local.mail (2308.9ms)
+Date: Thu, 05 Dec 2024 04:24:28 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <6751552c1ef0d_ef822f3020412@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_cerrado?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        cerrado
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 2337ms (Views: 1.4ms | ActiveRecord: 8.6ms (2 queries, 0 cached) | GC: 16.9ms)
+
+
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:30 -0300
+Started GET "//locker_controllers" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:30 -0300
+Processing by LockerControllersController#index as HTML
+Processing by LockerControllersController#index as HTML
+  [1m[36mLockerController Load (1.4ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+  [1m[36mLockerController Load (2.3ms)[0m  [1m[34mSELECT "locker_controllers".* FROM "locker_controllers"[0m
+  ↳ app/controllers/locker_controllers_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "//locker_controllers/2/lockers/4" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:34 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>1, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"4", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.6ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-05 07:24:34.161773"], ["id", 4]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":1,"controller_id":2}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+LockerMailer#state_change_notification: processed outbound mail in 2.3ms
+Started PUT "//locker_controllers/2/lockers/4" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:36 -0300
+Delivered mail 67515532295a4_ef822f3020568@MacBook-Pro-de-Administrador.local.mail (2183.1ms)
+Processing by LockersController#update as HTML
+Date: Thu, 05 Dec 2024 04:24:34 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <67515532295a4_ef822f3020568@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_abierto?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        abierto
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+  Parameters: {"abierto"=>true, "servo"=>1, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"4", "locker"=>{"abierto"=>true}}
+Completed 200 OK in 2199ms (Views: 1.3ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 1.8ms)
+
+
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "//locker_controllers/2/lockers/4" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:38 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>1, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"4", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.5ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.7ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-05 07:24:38.997288"], ["id", 4]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":1,"controller_id":2}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+LockerMailer#state_change_notification: processed outbound mail in 1.6ms
+Delivered mail 675155371829_ef825dfc206a2@MacBook-Pro-de-Administrador.local.mail (2110.5ms)
+Date: Thu, 05 Dec 2024 04:24:39 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <675155371829_ef825dfc206a2@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_cerrado?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        cerrado
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 2128ms (Views: 1.2ms | ActiveRecord: 3.7ms (2 queries, 0 cached) | GC: 2.3ms)
+
+
+Started PUT "//locker_controllers/2/lockers/3" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:42 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>true, "servo"=>2, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"3", "locker"=>{"abierto"=>true}}
+  [1m[36mLocker Load (0.7ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (2.5ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", true], ["updated_at", "2024-12-05 07:24:42.546373"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":true,"servo":2,"controller_id":2}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+LockerMailer#state_change_notification: processed outbound mail in 1.6ms
+Delivered mail 6751553a87bff_ef822f30207f3@MacBook-Pro-de-Administrador.local.mail (2142.9ms)
+Date: Thu, 05 Dec 2024 04:24:42 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <6751553a87bff_ef822f30207f3@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_abierto?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        abierto
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 2160ms (Views: 1.1ms | ActiveRecord: 4.7ms (2 queries, 0 cached) | GC: 1.4ms)
+
+
+Started PUT "//locker_controllers/2/lockers/3" for 2800:150:11e:1e09:65e1:53dd:9e3e:7a13 at 2024-12-05 04:24:46 -0300
+Processing by LockersController#update as HTML
+  Parameters: {"abierto"=>false, "servo"=>2, "controller_id"=>2, "locker_controller_id"=>"2", "id"=>"3", "locker"=>{"abierto"=>false}}
+  [1m[36mLocker Load (0.4ms)[0m  [1m[34mSELECT "lockers".* FROM "lockers" WHERE "lockers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lockers_controller.rb:121:in `set_locker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mLocker Update (1.8ms)[0m  [1m[33mUPDATE "lockers" SET "abierto" = $1, "updated_at" = $2 WHERE "lockers"."id" = $3[0m  [["abierto", false], ["updated_at", "2024-12-05 07:24:46.275591"], ["id", 3]]
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lockers_controller.rb:31:in `update'
+Publicado mensaje MQTT: ChangePassword -> {"estado":false,"servo":2,"controller_id":2}
+  Rendering layout layouts/mailer.html.erb
+  Rendering locker_mailer/state_change_notification.html.erb within layouts/mailer
+  Rendered locker_mailer/state_change_notification.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+LockerMailer#state_change_notification: processed outbound mail in 1.6ms
+Delivered mail 6751553e45138_ef825eb020838@MacBook-Pro-de-Administrador.local.mail (2130.5ms)
+Date: Thu, 05 Dec 2024 04:24:46 -0300
+From: ialiberon@miuandes.cl
+To: mjtagle2@miuandes.cl
+Message-ID: <6751553e45138_ef825eb020838@MacBook-Pro-de-Administrador.local.mail>
+Subject: =?UTF-8?Q?Notificaci=C3=B3n_de_estado_del_casillero:_cerrado?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/locker_mailer/state_change_notification.html.erb=
+ --><!DOCTYPE html>
+<html lang=3D"es">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Tu C=C3=B3digo de Apertura</title>
+</head>
+<body style=3D"font-family: Arial, sans-serif; background-color: #f9f9f9;=
+ margin: 0; padding: 0;">
+  <div style=3D"background-color: #ffffff; margin: 20px auto; padding: 20=
+px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-wid=
+th: 600px;">
+    <h1 style=3D"font-size: 24px; font-weight: bold; color: #333333; text=
+-align: center;">=C2=A1Advertencia!</h1>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Tu =
+casillero se ha actualizado, su nuevo estado es:</p>
+    <p style=3D"font-size: 20px; font-weight: bold; color: #007BFF; text-=
+align: center; background-color: #f0f8ff; display: flex; justify-content:=
+ center; align-items: center; margin: 20px auto; padding: 10px 20px; bord=
+er-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        cerrado
+    </p>
+    <p style=3D"font-size: 16px; color: #555555; text-align: center;">Si =
+fuiste t=C3=BA, puedes ignorar este mensaje.</p>
+    <p style=3D"font-size: 12px; color: #aaaaaa; text-align: center; marg=
+in-top: 20px;">Este mensaje fue generado autom=C3=A1ticamente. Por favor,=
+ no respondas a este correo.</p>
+  </div>
+</body>
+</html><!-- END app/views/locker_mailer/state_change_notification.html.er=
+b -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->=
+
+Completed 200 OK in 2145ms (Views: 1.3ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 3.7ms)
+
+
