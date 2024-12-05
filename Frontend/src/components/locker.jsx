@@ -30,7 +30,7 @@ const ControllerRow = ({ controller, controller_id }) => {
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [createLockerModalOpen, setCreateLockerModalOpen] = useState(false);
 
-  const handleRequestCode = async (lockerControllerId, lockerId) => {
+  const handleRequestCode = async (lockerControllerId, lockerId, index) => {
     try {
       const response = await axios.post(
         `${API_URL}/locker_controllers/${lockerControllerId}/lockers/${lockerId}/send_code`,
@@ -145,7 +145,7 @@ const ControllerRow = ({ controller, controller_id }) => {
                                 size="small"
                                 sx={{ mr: 1, bgcolor: '#FFCDD2', color: 'black' }}
                                 onClick={() =>
-                                  handleRequestCode(controller.id, locker.id)
+                                  handleRequestCode(controller.id, locker.id, index + 1)
                                 }
                               >
                                 PEDIR CLAVE
@@ -261,13 +261,13 @@ const LockerTable = () => {
       <TableContainer component={Paper} elevation={1}>
         <Table>
           <TableBody>
-            {lockerControllers.map((controller) => (
+            {lockerControllers.map((controller, index) => (
               <ControllerRow
                 key={controller.id}
                 controller={controller}
                 setCreateLockerModalOpen={setCreateLockerModalOpen}
                 createLockerModalOpen={createLockerModalOpen}
-                controller_id={controller.id}
+                controller_id={index + 1}
               />
             ))}
           </TableBody>

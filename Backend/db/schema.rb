@@ -70,12 +70,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_021144) do
     t.datetime "ultima_conexion"
     t.integer "casilleros_activos", default: 0, null: false
     t.boolean "alert_sent", default: false, null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["estado"], name: "index_locker_controllers_on_estado"
     t.index ["nombre"], name: "index_locker_controllers_on_nombre", unique: true
-    t.index ["user_id"], name: "index_locker_controllers_on_user_id"
   end
 
   create_table "locker_events", force: :cascade do |t|
@@ -97,6 +95,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_021144) do
     t.boolean "abierto", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "intPassword"
     t.index ["locker_controller_id", "nombre"], name: "index_lockers_on_controller_and_nombre", unique: true
     t.index ["locker_controller_id"], name: "index_lockers_on_locker_controller_id"
     t.index ["owner_email"], name: "index_lockers_on_owner_email"
@@ -133,7 +132,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_021144) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "gestures", "symbol_models"
-  add_foreign_key "locker_controllers", "users"
   add_foreign_key "locker_events", "lockers"
   add_foreign_key "lockers", "locker_controllers"
   add_foreign_key "users", "symbol_models"

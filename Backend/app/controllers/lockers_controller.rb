@@ -30,7 +30,7 @@ class LockersController < ApplicationController
 
     if @locker.update(abierto: params[:abierto])
       if previous_state != @locker.abierto
-        publish_mqtt_message_state_change(params[:servo], @locker.abierto)
+        publish_mqtt_message_state_change(params[:servo], @locker.abierto, params[:controller_id])
         LockerMailer.state_change_notification(@locker).deliver_now
       end
       render json: @locker
@@ -74,7 +74,11 @@ class LockersController < ApplicationController
   
     # Generate new key sequence and update locker
     new_key_sequence = Gesture.pluck(:gesture_type).sample(4).join('-')
-    @locker.update!(key_sequence: new_key_sequence)
+    new_int_password = Array.new(4) { rand(1..6) }.join.to_i
+    @locker.update!(key_sequence: new_key_sequence, intPassword: new_int_password)
+
+    puts "Generated key_sequence: #{new_key_sequence}"
+    puts "Generated intPassword: #{new_int_password}"
   
     # Send the email
     LockerMailer.send_code(@locker).deliver_now
@@ -88,11 +92,12 @@ class LockersController < ApplicationController
 
   private
 
-  def publish_mqtt_message_state_change(servo, state)
+  def publish_mqtt_message_state_change(servo, state, controller)
     topic = 'ChangePassword'
     message = {
       estado: state,
       servo: servo,
+      controller_id: controller,
   }.to_json
     MQTT_CLIENT.publish(topic, message)
     Rails.logger.info "Publicado mensaje MQTT: #{topic} -> #{message}"
@@ -103,11 +108,9 @@ class LockersController < ApplicationController
   def publish_mqtt_message_mailer
       topic = 'ChangePassword'
       message = {
-          type: 'OpenLocker',
-          locker_id: @locker.id,
-          owner_email: @locker.owner_email,
-          key_sequence: @locker.key_sequence,
-          timestamp: Time.current
+          newPassword: @locker.intPassword,
+          servo: params[:servo],
+          controller_id: params[:controller_id],
       }.to_json
       MQTT_CLIENT.publish(topic, message)
   rescue StandardError => e
