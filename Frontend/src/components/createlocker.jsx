@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
+import API_URL from './env';
 
 const CreateLockerModal = ({ open, onClose, controllerId }) => {
   const [lockerData, setLockerData] = useState({
@@ -36,7 +37,12 @@ const CreateLockerModal = ({ open, onClose, controllerId }) => {
 
       // Utilizar el ID del controlador especificado
       const response = await axios.post(
-        `http://localhost:3000/locker_controllers/${controllerId}/lockers`,
+        `${API_URL}/locker_controllers/${controllerId}/lockers`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        },
         newLockerData
       );
 

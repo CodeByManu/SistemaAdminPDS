@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
+import API_URL from './env';
 
 const LockerDetailsModal = ({ open, onClose, locker }) => {
   if (!locker) return null;
@@ -19,7 +20,12 @@ const LockerDetailsModal = ({ open, onClose, locker }) => {
 
   const handleSendCode = async () => {
     try {
-      await axios.post(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/send_code`);
+      await axios.post(`${API_URL}/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/send_code`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        });
       alert('Código de apertura enviado!');
     } catch (error) {
       console.error('Error sending email:', error);
@@ -33,7 +39,12 @@ const LockerDetailsModal = ({ open, onClose, locker }) => {
 
   const handleUpdateEmail = async () => {
     try {
-      await axios.put(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/update_email`, { email: editableEmail });
+      await axios.put(`${API_URL}/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}/update_email`, { email: editableEmail },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        });
       alert('Email actualizado correctamente');
     } catch (error) {
       console.error('Error updating email:', error);
@@ -43,7 +54,12 @@ const LockerDetailsModal = ({ open, onClose, locker }) => {
 
   const deleteLocker = async () => {
     try {
-      await axios.delete(`http://localhost:3000/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}`);
+      await axios.delete(`${API_URL}/locker_controllers/${locker.locker_controller_id}/lockers/${locker.id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          }
+        });
       alert('El casillero ha sido eliminado correctamente');
       onClose();
     } catch (error) {
