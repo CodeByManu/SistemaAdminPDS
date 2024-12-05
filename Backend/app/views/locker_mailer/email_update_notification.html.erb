@@ -8,9 +8,10 @@
 <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0;">
   <div style="background-color: #ffffff; margin: 20px auto; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-width: 600px;">
     <h1 style="font-size: 24px; font-weight: bold; color: #333333; text-align: center;">¡Hola!</h1>
-    <p style="font-size: 16px; color: #555555; text-align: center;">Tu nuevo código de apertura es:</p>
-    <p style="font-size: 20px; font-weight: bold; color: #28a745; text-align: center; background-color: #eaffea; display: flex; justify-content: center; align-items: center; margin: 20px auto; padding: 10px 20px; border-radius: 5px; border: 1px solid #28a745; width: fit-content;">
-        <%= @int_password %>
+    <p style="font-size: 16px; color: #555555; text-align: center;">El correo electrónico asociado al casillero "<%= @locker.nombre %>" ha sido actualizado con éxito.</p>
+    <p style="font-size: 16px; color: #555555; text-align: center;">La clave actual asociada es:</p>
+    <p style="font-size: 20px; font-weight: bold; color: #007BFF; text-align: center; background-color: #f0f8ff; display: flex; justify-content: center; align-items: center; margin: 20px auto; padding: 10px 20px; border-radius: 5px; border: 1px solid #007BFF; width: fit-content;">
+        <%= @key_sequence %>
     </p>
     <p style="font-size: 16px; color: #555555; text-align: center;">Para abrir tu casillero, utilice los botones asignados. Antes de marcar la secuencia, deberá presionar el boton de inicio. Tras esto podra comenzar a ingresar la secuencia asignada.</p>
     <p style="font-size: 16px; color: #555555; text-align: center;">Tras ingresar correctamente la secuencia, el candado se abrirá. Para cerrar el candado precione el boton de cierre.</p>

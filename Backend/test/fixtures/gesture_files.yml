@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  gesture1: MyString
+  gesture2: MyString
+  gesture3: MyString
+  gesture4: MyString
+  gesture5: MyString
+  gesture6: MyString
+
+two:
+  name: MyString
+  gesture1: MyString
+  gesture2: MyString
+  gesture3: MyString
+  gesture4: MyString
+  gesture5: MyString
+  gesture6: MyString

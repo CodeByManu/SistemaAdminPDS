@@ -34,6 +34,11 @@ class LockerControllersController < ApplicationController
     @locker_controller.destroy
     head :no_content
   end
+  
+  def count
+    count = LockerController.count
+    render json: { count: count }
+  end
 
   private
 

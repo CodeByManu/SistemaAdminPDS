@@ -89,6 +89,10 @@ const ControllerRow = ({ controller, controller_id }) => {
           <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
             {controller.nombre || 'Controlador sin registrar'}
           </Typography>
+          {/* Añadir el estado de conexión */}
+          <Typography variant="body2" color={controller.conectado ? 'green' : 'red'}>
+            {controller.conectado ? 'Conectado' : 'Desconectado'}
+          </Typography>
         </TableCell>
       </TableRow>
 

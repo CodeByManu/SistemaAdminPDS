@@ -5,6 +5,8 @@ import ResponsiveAppBar from './components/appbar';
 import LockerDashboard from './components/home';
 import LockerTable from './components/locker';
 import Login from './components/login';
+import GestureFileForm from './components/model';
+import LockerDashboardSuper from './components/homesuper';
 
 
 function App() {
@@ -13,8 +15,10 @@ function App() {
       <ResponsiveAppBar />
       <Routes>
         <Route path="/" element={<LockerDashboard />} />
+        <Route path="/homesuper" element={<LockerDashboardSuper />} />
         <Route path="/casillero" element={<LockerTable />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/model" element={<GestureFileForm />} />
       </Routes>
     </BrowserRouter>
   );
